@@ -1,0 +1,6 @@
+.env
+dados_orcamento.json
+__pycache__/
+*.pyc
+venv/
+.streamlit/secrets.toml
