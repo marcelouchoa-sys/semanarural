@@ -1223,7 +1223,7 @@ elif st.session_state.pagina == "resultado":
        📚 Quem foi Kalecki?</div>
   <div style="font-size:.88rem;color:#cbd5e1;line-height:1.6;">
     <b style="color:#fbbf24">Michal Kalecki</b> (1899–1970) foi o economista que mostrou que
-    <b>onde</b> o governo gasta importa tanto quanto <b>quanto</b> gasta.
+    <b>onde</b> o governo gasta importa tanto <b>quanto</b> gasta.
     Para ele, gastos em saúde, educação e transferência de renda têm
     <b style="color:#4ade80">multiplicadores muito maiores</b> do que gastos em dívida ou defesa.
   </div>
