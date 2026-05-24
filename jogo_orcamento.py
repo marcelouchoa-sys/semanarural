@@ -152,130 +152,87 @@ GASTOS = {
         "cor": "#3b82f6",
         "descricao": "Escolas, professores, bolsas e livros",
         "real_pct": 13,
-        "crise_emoji": "📚❌", "crise_msg": "Escolas fechando por falta de verba!",
         "niveis": {
-            0: ("💀 Colapso total",      "#7f1d1d",
-                "Zero investimento em educação. Para Kalecki, isso é catastrófico: sem qualificação, os trabalhadores ficam presos em empregos de baixíssima remuneração, o consumo popular desaba e a economia entra em estagnação permanente. Não há crescimento sustentável possível sem base educacional."),
-            1: ("🔴 Crise grave",         "#ef4444",
-                "Um cartão apenas — o sistema sobrevive no limite. Kalecki diria que esse gasto mínimo não move o multiplicador educacional: professores mal pagos, evasão escolar alta, sem materiais. A economia não consegue absorver tecnologia nem ampliar produtividade."),
-            2: ("🟡 Funcionando precariamente", "#f59e0b",
-                "Dois cartões: dá pra manter as portas abertas, mas com qualidade baixa. Para Kalecki, é o ponto onde o gasto público começa a ter algum efeito de multiplicação — salários de professores entram no consumo local — mas ainda insuficiente para reduzir desigualdade."),
-            3: ("🟢 Funcionamento ideal",  "#22c55e",
-                "Três cartões: o ponto ótimo kaleckiano. O gasto em educação aqui maximiza o multiplicador: cada real investido gera mais de um real de renda na economia, via salários de professores, fornecedores de material, construção de escolas. A desigualdade começa a cair de forma consistente."),
-            4: ("🔵 Excesso relativo",     "#3b82f6",
-                "Quatro ou mais cartões em educação: bom, mas com retornos decrescentes no curto prazo. Kalecki alertaria que esse recurso extra poderia ser redistributivo em outras frentes — o excesso aqui significa falta em saúde ou transferência de renda, que têm impacto imediato sobre a demanda agregada."),
+            0: ("Sem investimento",    "#7f1d1d", "Zero em educação. Para Kalecki, isso é catastrófico: sem qualificação, trabalhadores ficam presos em empregos de baixa renda, o consumo popular despenca e a economia entra em estagnação permanente."),
+            1: ("✅ Ideal",             "#22c55e", "Um cartão já é suficiente para manter o sistema educacional funcionando. Professores valorizados, escolas abertas, materiais disponíveis. Para Kalecki, esse gasto ativa o multiplicador de longo prazo."),
+            2: ("Alto investimento",   "#3b82f6", "Dois cartões representam um investimento acima do básico — excelência educacional, laboratórios, esporte. Bom, mas com retorno marginal menor que o primeiro cartão."),
+            3: ("Excesso relativo",    "#6366f1", "Três cartões em educação com orçamento de 5: o setor já está bem servido, mas esse recurso extra poderia ter mais impacto em transferência de renda ou saúde."),
+            4: ("Excesso",             "#6366f1", "Quatro cartões: retorno decrescente claro. Kalecki priorizaria redistribuir esse excesso onde o multiplicador é maior."),
         },
     },
     "🏥 Saúde": {
         "cor": "#ef4444",
         "descricao": "Hospitais, médicos, remédios e UBSs",
         "real_pct": 14,
-        "crise_emoji": "🏥❌", "crise_msg": "Filas imensas, hospitais lotados!",
         "niveis": {
-            0: ("💀 Colapso total",      "#7f1d1d",
-                "Sem saúde pública, trabalhadores doentes não produzem e morrem cedo. Kalecki seria direto: saúde é o gasto que preserva a força de trabalho — base de toda produção capitalista. Sem ela, até os lucros empresariais despencam. É o pior cenário para qualquer economia."),
-            1: ("🔴 Emergências apenas",  "#ef4444",
-                "Um cartão: só atendimento de emergência. Kalecki destacava que saúde preventiva evita gastos maiores depois — o custo de não investir se multiplica. Com apenas emergências, a população trabalha doente, a produtividade cai e o consumo doméstico encolhe."),
-            2: ("🟡 Sistema sob pressão", "#f59e0b",
-                "Dois cartões: o sistema funciona, mas na corda bamba. Filas longas, falta de remédios. Para Kalecki, é insuficiente: os trabalhadores de baixa renda — que dependem do SUS — continuam vulneráveis, o que mantém alta a desigualdade e baixo o consumo popular."),
-            3: ("🟢 SUS funcionando",     "#22c55e",
-                "Três cartões: o ponto ótimo. Kalecki via a saúde pública como redistribuição disfarçada: as famílias pobres não precisam gastar com plano privado e médicos, liberando renda para consumo de outros bens. Isso aquece a demanda agregada e reduz a desigualdade diretamente."),
-            4: ("🔵 Excesso relativo",    "#3b82f6",
-                "Quatro ou mais: retornos decrescentes. O sistema já está bem servido — mais cartões aqui melhoram pouco a saúde mas poderiam ampliar muito o consumo popular se fossem para transferência de renda. Kalecki preferiria redistribuir esse excesso."),
+            0: ("Sem investimento",    "#7f1d1d", "Sem saúde pública, trabalhadores doentes não produzem. Para Kalecki, saúde preserva a força de trabalho — base de toda produção. Sem ela, até os lucros empresariais despencam."),
+            1: ("✅ Ideal",             "#22c55e", "Um cartão mantém o SUS funcionando: UBSs abertas, médicos disponíveis, remédios acessíveis. Para Kalecki, saúde pública é redistribuição disfarçada — famílias pobres liberam renda para consumir outras coisas."),
+            2: ("Alto investimento",   "#3b82f6", "Dois cartões: saúde preventiva avançada, mortalidade em queda, sistema robusto. Bom, mas o segundo cartão tem retorno menor que o primeiro."),
+            3: ("Excesso relativo",    "#6366f1", "Três cartões: o sistema já está excelente. Kalecki redistribuiria esse excesso para transferência de renda, que tem multiplicador de curto prazo mais imediato."),
+            4: ("Excesso",             "#6366f1", "Quatro cartões: retorno decrescente acentuado."),
         },
     },
     "🏠 Habitação": {
         "cor": "#f97316",
         "descricao": "Moradia popular e urbanização",
         "real_pct": 5,
-        "crise_emoji": "🏚️❌", "crise_msg": "Favelas crescendo, sem moradia digna!",
         "niveis": {
-            0: ("💀 Sem moradia popular", "#7f1d1d",
-                "Zero em habitação. Kalecki adorava obras públicas: construção civil é o setor que mais emprega trabalhadores sem qualificação avançada — pedreiros, carpinteiros, eletricistas. Sem esse investimento, o desemprego de base explode e o consumo popular despenca."),
-            1: ("🔴 Insuficiente",        "#ef4444",
-                "Um cartão: programas mínimos, sem escala. O efeito kaleckiano de multiplicação — cada obra pública contrata trabalhadores que consomem localmente — não se realiza. A especulação imobiliária domina e a população de baixa renda paga aluguel caro, reduzindo consumo de outros bens."),
-            2: ("🟡 Programas básicos",   "#f59e0b",
-                "Dois cartões: começa a funcionar. Kalecki diria que aqui o multiplicador da construção civil já aparece: salários de trabalhadores da obra entram no comércio local, o consumo aquece, e famílias realocadas de favelas passam a gastar melhor sua renda."),
-            3: ("🟢 Programa robusto",    "#22c55e",
-                "Três cartões: o ideal. Kalecki via grandes programas habitacionais como política anticíclica perfeita — em crises, o governo constrói casas, gera emprego de base e sustenta a demanda. Reduz desigualdade, libera renda das famílias e aquece cadeias produtivas inteiras."),
-            4: ("🔵 Excesso relativo",    "#3b82f6",
-                "Quatro ou mais: habitação já resolvida — mais cartões aqui têm retorno marginal baixo. Kalecki sugeriria redirecionar para transferência de renda, que tem efeito imediato e mais direto sobre o consumo popular."),
+            0: ("Sem investimento",    "#7f1d1d", "Zero em habitação. Kalecki adorava obras públicas: construção civil é o setor que mais emprega trabalhadores sem qualificação. Sem esse investimento, o desemprego de base explode."),
+            1: ("✅ Ideal",             "#22c55e", "Um cartão já ativa o multiplicador da construção civil: obras públicas contratam pedreiros, eletricistas, engenheiros — que gastam seus salários no comércio local, gerando emprego em cascata."),
+            2: ("Alto investimento",   "#3b82f6", "Dois cartões: cidades planejadas, saneamento, transporte público. O segundo cartão ainda tem bom retorno dado o alto multiplicador da construção."),
+            3: ("Excesso relativo",    "#6366f1", "Três cartões: habitação já resolvida. Kalecki sugeriria redirecionar para transferência de renda."),
+            4: ("Excesso",             "#6366f1", "Quatro cartões: retorno decrescente claro."),
         },
     },
     "🎭 Cultura": {
         "cor": "#ec4899",
         "descricao": "Museus, teatro, esporte e lazer",
         "real_pct": 1,
-        "crise_emoji": "🎭❌", "crise_msg": "Museus e teatros fechando!",
         "niveis": {
-            0: ("💀 Cultura zerada",      "#7f1d1d",
-                "Sem cultura pública, o lazer vira mercadoria cara e exclusiva. Para Kalecki, isso aumenta a desigualdade de bem-estar: ricos frequentam espetáculos privados, trabalhadores não têm acesso a nada. A coesão social se fragiliza e a qualidade de vida dos mais pobres piora muito."),
-            1: ("🔴 Só o básico",         "#ef4444",
-                "Um cartão: sobrevivência mínima — alguns eventos públicos, praças. Kalecki veria esse gasto como semente: pequeno, mas os salários de artistas, técnicos e gestores culturais entram no consumo local. O multiplicador cultural é real, mesmo que menor que educação e saúde."),
-            2: ("🟡 Razoável",            "#f59e0b",
-                "Dois cartões: programas regulares, equipamentos culturais abertos. Para Kalecki, cultura é consumo popular democratizado — quando o Estado fornece lazer gratuito ou barato, as famílias pobres têm mais dinheiro livre para outras necessidades."),
-            3: ("🟢 Boa oferta cultural", "#22c55e",
-                "Três cartões: cultura acessível e diversificada. Kalecki diria que aqui o gasto público em cultura começa a ter efeito de identidade e coesão social — além do multiplicador econômico. Trabalhadores mais satisfeitos são mais produtivos e consomem mais."),
-            4: ("🔵 Excesso relativo",    "#3b82f6",
-                "Quatro ou mais em cultura com 10 cartões totais é muito. Kalecki priorizaria isso apenas após resolver saúde, educação e transferência de renda — esses têm multiplicadores maiores e impacto imediato sobre desigualdade."),
+            0: ("Sem investimento",    "#7f1d1d", "Sem cultura pública, lazer vira mercadoria cara e exclusiva. Para Kalecki, isso aumenta a desigualdade de bem-estar e fragiliza a coesão social."),
+            1: ("✅ Ideal",             "#22c55e", "Um cartão democratiza o lazer: museus, teatros, praças e esporte gratuitos. Kalecki via cultura como bem-estar dos trabalhadores — pessoas com lazer são mais produtivas e participativas."),
+            2: ("Alto investimento",   "#3b82f6", "Dois cartões: vida cultural rica, identidade social fortalecida, turismo aquecido."),
+            3: ("Excesso relativo",    "#6366f1", "Três cartões em cultura com orçamento de 5: Kalecki priorizaria saúde e renda antes de ampliar cultura além do básico."),
+            4: ("Excesso",             "#6366f1", "Quatro cartões: desproporcionalmente alto para o orçamento disponível."),
         },
     },
     "🛡️ Segurança e Defesa": {
         "cor": "#8b5cf6",
         "descricao": "Polícia, bombeiros e forças armadas",
         "real_pct": 9,
-        "crise_emoji": "🚨❌", "crise_msg": "Violência sem controle!",
         "niveis": {
-            0: ("💀 Caos e violência",    "#7f1d1d",
-                "Sem segurança, a economia paralisa. Kalecki reconhecia que ordem pública é pré-condição para qualquer atividade econômica — empresas não investem, trabalhadores não se deslocam, comércio fecha cedo. O custo econômico da violência recai desproporcionalmente sobre os mais pobres."),
-            1: ("🔴 Segurança precária",  "#ef4444",
-                "Um cartão: força policial mínima. Kalecki era crítico do excesso de gasto em segurança, mas reconhecia o mínimo necessário. Com apenas isso, a violência ainda é alta e afeta o consumo: as famílias pobres, que moram nas áreas mais vulneráveis, são as mais prejudicadas."),
-            2: ("🟡 Controle básico",     "#f59e0b",
-                "Dois cartões: segurança funcionando. Para Kalecki, esse é o nível adequado — o Estado garante a ordem sem desperdiçar recursos que poderiam ir para saúde, educação ou transferência de renda, que têm multiplicadores sociais muito maiores."),
-            3: ("🟢 Segurança adequada",  "#22c55e",
-                "Três cartões: segurança bem estruturada. Kalecki aceitaria esse nível, mas alertaria: segurança não reduz desigualdade por si só — ela apenas protege o que existe. O investimento social em educação e renda é que ataca as causas da violência, não o policiamento."),
-            4: ("🔵 Excesso — risco autoritário", "#8b5cf6",
-                "Quatro ou mais em segurança e defesa é o ponto de alerta kaleckiano: gasto militar/policial excessivo não gera consumo popular, não reduz desigualdade e pode comprimir liberdades. Para Kalecki, isso representa transferência de recursos dos trabalhadores para setores que não os beneficiam."),
+            0: ("Sem investimento",    "#7f1d1d", "Sem segurança, a economia paralisa. Kalecki reconhecia que ordem pública é pré-condição para qualquer atividade econômica — mas insistia que a causa da violência é a desigualdade, não a falta de policiamento."),
+            1: ("✅ Ideal",             "#22c55e", "Um cartão garante segurança básica. Para Kalecki, esse é o nível adequado — o Estado garante a ordem sem desperdiçar recursos que poderiam ir para multiplicadores sociais maiores."),
+            2: ("Alto investimento",   "#3b82f6", "Dois cartões: segurança robusta. Kalecki aceitaria, mas alertaria: segurança não reduz desigualdade por si só — ela protege o que existe, não transforma."),
+            3: ("Excesso — alerta",    "#f59e0b", "Três cartões em segurança e defesa: para Kalecki, esse excesso não gera consumo popular, não reduz desigualdade e pode comprimir liberdades."),
+            4: ("Excesso elevado",     "#ef4444", "Quatro cartões: o ponto de alerta kaleckiano — gasto militar excessivo representa transferência de recursos dos trabalhadores para setores que não os beneficiam."),
         },
     },
     "🤝 Transferência de Renda": {
         "cor": "#22c55e",
         "descricao": "Bolsa Família, Pé-de-Meia, BPC",
         "real_pct": 17,
-        "crise_emoji": "😢❌", "crise_msg": "Fome e pobreza extrema!",
         "niveis": {
-            0: ("💀 Pobreza extrema",     "#7f1d1d",
-                "Zero em transferência de renda. Kalecki era contundente: sem renda nas mãos de quem mais precisa, o consumo popular colapsa. A demanda agregada cai, empresas vendem menos, demitem mais — uma espiral recessiva que afeta toda a economia, não só os pobres."),
-            1: ("🔴 Alcance mínimo",      "#ef4444",
-                "Um cartão: atinge só as famílias em extrema miséria. Para Kalecki, é insuficiente: famílias pobres têm propensão a consumir quase 100% da renda que recebem — cada real de transferência vira consumo imediato. Com pouco, o efeito multiplicador não se realiza em escala."),
-            2: ("🟡 Redução parcial",     "#f59e0b",
-                "Dois cartões: melhora, mas ainda limitado. Kalecki diria que aqui o consumo popular começa a responder: mais famílias comprando no comércio local, mais demanda por bens básicos. O multiplicador kaleckiano da transferência de renda começa a aparecer na economia."),
-            3: ("🟢 Programa efetivo",    "#22c55e",
-                "Três cartões: o ideal kaleckiano por excelência. Transferência de renda é o gasto com maior propensão a virar consumo imediato — quem recebe Bolsa Família gasta tudo no comércio local. Kalecki diria que esse é o multiplicador mais poderoso para aquecer a demanda e reduzir desigualdade."),
-            4: ("🔵 Alto impacto",        "#10b981",
-                "Quatro ou mais: impacto muito positivo. Kalecki apoiaria — transferência de renda tem o maior multiplicador de curto prazo. A única ressalva é equilibrar com saúde e educação, que garantem os multiplicadores de longo prazo. Mas em contexto de crise, mais transferência é sempre bem-vindo."),
+            0: ("Sem investimento",    "#7f1d1d", "Zero em transferência de renda. Para Kalecki, é aqui que começa a recessão: sem renda nas mãos de quem precisa, o consumo popular colapsa, empresas vendem menos, demitem mais — espiral descendente."),
+            1: ("✅ Ideal",             "#22c55e", "Um cartão já ativa o multiplicador mais poderoso de Kalecki: cada real transferido para famílias pobres vira consumo imediato no comércio local, que contrata mais, que gera mais renda — crescimento de baixo para cima."),
+            2: ("Alto investimento",   "#10b981", "Dois cartões: pobreza drasticamente reduzida, consumo popular aquecido. Para Kalecki, esse segundo cartão ainda tem retorno altíssimo — famílias pobres gastam quase tudo que recebem."),
+            3: ("Excelente",           "#10b981", "Três cartões: o máximo do multiplicador kaleckiano em ação. Kalecki aprovaria plenamente."),
+            4: ("Impacto máximo",      "#10b981", "Quatro cartões: toda a lógica de Kalecki aplicada — demanda popular no máximo, desigualdade em queda, economia aquecida de baixo para cima."),
         },
     },
     "💰 Serviço da Dívida": {
         "cor": "#6b7280",
         "descricao": "Juros e pagamento de dívidas do governo",
         "real_pct": 41,
-        "crise_emoji": "📉❌", "crise_msg": "Calote — governo sem crédito!",
         "niveis": {
-            0: ("🔴 Calote",              "#ef4444",
-                "Zero na dívida significa calote. Kalecki reconhecia que algum pagamento é necessário para manter o crédito do Estado — sem isso, o governo perde capacidade de financiar seus gastos futuros. Mas ele também dizia: a dívida pública é riqueza dos credores, não uma obrigação sagrada."),
-            1: ("🟡 Pagamento mínimo",    "#f59e0b",
-                "Um cartão: só os juros mínimos. Para Kalecki, esse é um bom sinal — significa que o governo priorizou saúde, educação e renda em vez de remunerar rentistas. A dívida pública, para Kalecki, é sobretudo um mecanismo de transferência de renda dos trabalhadores para os mais ricos."),
-            2: ("🟢 Equilíbrio",          "#22c55e",
-                "Dois cartões: pagamento razoável que mantém a credibilidade fiscal sem sacrificar o social. Kalecki diria que esse é o ponto de equilíbrio — honrar compromissos sem transformar o orçamento num veículo de enriquecimento de credores às custas dos serviços públicos."),
-            3: ("🟡 Acima do necessário", "#f59e0b",
-                "Três cartões: já está acima do ideal kaleckiano. Cada cartão a mais aqui é um cartão a menos em saúde ou transferência de renda. Para Kalecki, isso representa uma escolha política de favorecer rentistas em detrimento dos trabalhadores — exatamente o que o Brasil real faz com seus 44%."),
-            4: ("🔴 Prioridade invertida","#ef4444",
-                "Quatro ou mais em dívida — a escolha do Brasil real. Kalecki denunciaria isso como captura do Estado pelo capital financeiro: o governo usa recursos públicos para remunerar quem já é rico, em vez de investir nos multiplicadores que geram emprego e reduzem desigualdade. É o anti-Kalecki."),
+            0: ("Calote",              "#ef4444", "Zero na dívida significa calote. Kalecki reconhecia que algum pagamento é necessário para manter a credibilidade fiscal do Estado — mas insistia: a dívida pública é sobretudo riqueza dos credores, não obrigação sagrada."),
+            1: ("✅ Mínimo necessário", "#22c55e", "Um cartão: só o mínimo para honrar compromissos e manter o crédito do Estado. Para Kalecki, isso é o ideal — libera o máximo de recursos para os multiplicadores sociais."),
+            2: ("Acima do ideal",      "#f59e0b", "Dois cartões: já está acima do necessário. Cada cartão a mais aqui é um cartão a menos em saúde ou renda. Para Kalecki, isso representa escolha política de favorecer rentistas em detrimento dos trabalhadores."),
+            3: ("Excessivo",           "#ef4444", "Três cartões na dívida: o padrão do Brasil real. Kalecki denunciaria isso como captura do Estado pelo capital financeiro."),
+            4: ("Muito excessivo",     "#7f1d1d", "Quatro cartões — 80% do orçamento para credores. O anti-Kalecki em sua forma mais extrema: dinheiro público remunera quem já é rico enquanto saúde e educação colapsam."),
         },
     },
 }
-
 REAL_CARTOES = {k: round(v["real_pct"] / 100 * TOTAL_CARTOES) for k, v in GASTOS.items()}
 diff = TOTAL_CARTOES - sum(REAL_CARTOES.values())
 if diff != 0:
@@ -284,56 +241,56 @@ if diff != 0:
 # ── Scores kaleckianos por nível (0-4+) ─────────────────────────────────────
 # Cada indicador tem score 0-100 para cada nível de cartão
 # Reflete mudança brusca: 0→1 é enorme; 3→4 é marginal ou negativo
+# Scores: 0=sem investimento, 1=ideal, 2+=excesso (retorno decrescente)
 SCORES_POR_NIVEL = {
-    # emprego, consumo, desigualdade(redução), investimento, divida(controle)
     "🏫 Educação": {
-        0: {"emprego":0, "consumo":0, "desigualdade":0, "investimento":0, "divida":50},
-        1: {"emprego":20,"consumo":15,"desigualdade":15,"investimento":25,"divida":50},
-        2: {"emprego":45,"consumo":35,"desigualdade":35,"investimento":55,"divida":50},
-        3: {"emprego":80,"consumo":65,"desigualdade":70,"investimento":90,"divida":50},
-        4: {"emprego":85,"consumo":68,"desigualdade":75,"investimento":92,"divida":45},
+        0: {"emprego":0,  "consumo":0,  "desigualdade":0,  "investimento":0,  "divida":50},
+        1: {"emprego":80, "consumo":65, "desigualdade":70, "investimento":90, "divida":50},
+        2: {"emprego":82, "consumo":67, "desigualdade":72, "investimento":88, "divida":48},
+        3: {"emprego":80, "consumo":65, "desigualdade":70, "investimento":82, "divida":44},
+        4: {"emprego":75, "consumo":60, "desigualdade":65, "investimento":75, "divida":40},
     },
     "🏥 Saúde": {
-        0: {"emprego":5, "consumo":0, "desigualdade":0, "investimento":5, "divida":50},
-        1: {"emprego":25,"consumo":20,"desigualdade":20,"investimento":20,"divida":50},
-        2: {"emprego":50,"consumo":45,"desigualdade":50,"investimento":40,"divida":50},
-        3: {"emprego":75,"consumo":70,"desigualdade":80,"investimento":65,"divida":50},
-        4: {"emprego":78,"consumo":73,"desigualdade":82,"investimento":67,"divida":45},
+        0: {"emprego":0,  "consumo":0,  "desigualdade":0,  "investimento":0,  "divida":50},
+        1: {"emprego":75, "consumo":70, "desigualdade":80, "investimento":65, "divida":50},
+        2: {"emprego":76, "consumo":71, "desigualdade":80, "investimento":63, "divida":48},
+        3: {"emprego":74, "consumo":69, "desigualdade":78, "investimento":60, "divida":44},
+        4: {"emprego":70, "consumo":65, "desigualdade":74, "investimento":55, "divida":40},
     },
     "🏠 Habitação": {
-        0: {"emprego":0, "consumo":5, "desigualdade":5, "investimento":5, "divida":50},
-        1: {"emprego":30,"consumo":25,"desigualdade":20,"investimento":25,"divida":50},
-        2: {"emprego":60,"consumo":50,"desigualdade":45,"investimento":50,"divida":50},
-        3: {"emprego":85,"consumo":70,"desigualdade":65,"investimento":70,"divida":50},
-        4: {"emprego":87,"consumo":72,"desigualdade":67,"investimento":72,"divida":45},
+        0: {"emprego":0,  "consumo":0,  "desigualdade":0,  "investimento":0,  "divida":50},
+        1: {"emprego":85, "consumo":70, "desigualdade":65, "investimento":70, "divida":50},
+        2: {"emprego":84, "consumo":68, "desigualdade":63, "investimento":68, "divida":48},
+        3: {"emprego":80, "consumo":64, "desigualdade":60, "investimento":64, "divida":44},
+        4: {"emprego":74, "consumo":58, "desigualdade":55, "investimento":58, "divida":40},
     },
     "🎭 Cultura": {
-        0: {"emprego":0, "consumo":0, "desigualdade":0, "investimento":0, "divida":50},
-        1: {"emprego":15,"consumo":20,"desigualdade":15,"investimento":10,"divida":50},
-        2: {"emprego":30,"consumo":40,"desigualdade":30,"investimento":25,"divida":50},
-        3: {"emprego":45,"consumo":55,"desigualdade":45,"investimento":35,"divida":50},
-        4: {"emprego":47,"consumo":57,"desigualdade":47,"investimento":37,"divida":45},
+        0: {"emprego":0,  "consumo":0,  "desigualdade":0,  "investimento":0,  "divida":50},
+        1: {"emprego":45, "consumo":55, "desigualdade":45, "investimento":35, "divida":50},
+        2: {"emprego":44, "consumo":54, "desigualdade":44, "investimento":33, "divida":48},
+        3: {"emprego":42, "consumo":50, "desigualdade":42, "investimento":30, "divida":44},
+        4: {"emprego":38, "consumo":45, "desigualdade":38, "investimento":26, "divida":40},
     },
     "🛡️ Segurança e Defesa": {
-        0: {"emprego":0, "consumo":0, "desigualdade":0, "investimento":0, "divida":50},
-        1: {"emprego":25,"consumo":10,"desigualdade":5, "investimento":10,"divida":50},
-        2: {"emprego":45,"consumo":20,"desigualdade":10,"investimento":20,"divida":50},
-        3: {"emprego":55,"consumo":22,"desigualdade":10,"investimento":22,"divida":45},
-        4: {"emprego":55,"consumo":15,"desigualdade":5, "investimento":15,"divida":35},
+        0: {"emprego":0,  "consumo":0,  "desigualdade":0,  "investimento":0,  "divida":50},
+        1: {"emprego":55, "consumo":22, "desigualdade":10, "investimento":22, "divida":50},
+        2: {"emprego":52, "consumo":18, "desigualdade":8,  "investimento":18, "divida":46},
+        3: {"emprego":48, "consumo":14, "desigualdade":6,  "investimento":14, "divida":40},
+        4: {"emprego":40, "consumo":10, "desigualdade":4,  "investimento":10, "divida":32},
     },
     "🤝 Transferência de Renda": {
-        0: {"emprego":0, "consumo":0, "desigualdade":0, "investimento":10,"divida":50},
-        1: {"emprego":20,"consumo":40,"desigualdade":45,"investimento":15,"divida":50},
-        2: {"emprego":35,"consumo":65,"desigualdade":70,"investimento":20,"divida":50},
-        3: {"emprego":50,"consumo":90,"desigualdade":95,"investimento":30,"divida":45},
-        4: {"emprego":55,"consumo":95,"desigualdade":98,"investimento":32,"divida":40},
+        0: {"emprego":0,  "consumo":0,  "desigualdade":0,  "investimento":10, "divida":50},
+        1: {"emprego":50, "consumo":90, "desigualdade":95, "investimento":30, "divida":50},
+        2: {"emprego":52, "consumo":92, "desigualdade":96, "investimento":28, "divida":48},
+        3: {"emprego":50, "consumo":90, "desigualdade":94, "investimento":25, "divida":44},
+        4: {"emprego":46, "consumo":85, "desigualdade":90, "investimento":22, "divida":40},
     },
     "💰 Serviço da Dívida": {
-        0: {"emprego":20,"consumo":40,"desigualdade":60,"investimento":20,"divida":0},
-        1: {"emprego":40,"consumo":50,"desigualdade":50,"investimento":35,"divida":40},
-        2: {"emprego":50,"consumo":50,"desigualdade":40,"investimento":45,"divida":65},
-        3: {"emprego":40,"consumo":35,"desigualdade":20,"investimento":35,"divida":75},
-        4: {"emprego":20,"consumo":15,"desigualdade":5, "investimento":15,"divida":80},
+        0: {"emprego":20, "consumo":40, "desigualdade":60, "investimento":20, "divida":0},
+        1: {"emprego":42, "consumo":52, "desigualdade":52, "investimento":37, "divida":42},
+        2: {"emprego":38, "consumo":40, "desigualdade":35, "investimento":32, "divida":60},
+        3: {"emprego":28, "consumo":25, "desigualdade":18, "investimento":22, "divida":72},
+        4: {"emprego":15, "consumo":12, "desigualdade":5,  "investimento":12, "divida":80},
     },
 }
 
@@ -377,6 +334,11 @@ for k,v in [("pagina","inicio"),("nome",""),("idade",""),("escolaridade",""),
             ("distribuicao",{k:0 for k in GASTOS}),("enviado",False),("reset_key",0)]:
     if k not in st.session_state: st.session_state[k]=v
 
+# ── Detecção de dispositivo via JS ─────────────────────────────────────────
+# Detecta mobile pelo parâmetro ?ua=mobile na URL (sem redirecionamento automático)
+_ua = st.query_params.get("ua", "desktop")
+IS_MOBILE = (_ua == "mobile")
+
 # ═══════════════════════════════════════════════════════════════
 # PÁGINA 1 — INÍCIO
 # ═══════════════════════════════════════════════════════════════
@@ -396,7 +358,14 @@ if st.session_state.pagina == "inicio":
     </div>
     """, unsafe_allow_html=True)
 
-    col_form, col_info = st.columns([1, 1], gap="large")
+    if IS_MOBILE:
+        # Mobile: coluna única centralizada
+        _, col_form, _ = st.columns([0.1, 0.8, 0.1])
+        col_info = None
+    else:
+        _cols = st.columns([1, 1], gap="large")
+        col_form = _cols[0]
+        col_info  = _cols[1]
 
     with col_form:
         st.markdown("""
@@ -438,7 +407,8 @@ if st.session_state.pagina == "inicio":
                 st.session_state.pagina = "jogo"
                 st.rerun()
 
-    with col_info:
+    if not IS_MOBILE:
+     with col_info:
         st.markdown(f"""
         <div style="background:rgba(59,130,246,.08);border:1.5px solid rgba(59,130,246,.3);
              border-radius:20px;padding:1.8rem 1.6rem;height:100%;
@@ -530,7 +500,13 @@ elif st.session_state.pagina == "jogo":
         for k,v in GASTOS.items()}, ensure_ascii=False)
     dist_ini = json.dumps(st.session_state.distribuicao, ensure_ascii=False)
     n = len(GASTOS)
-    altura = 1080
+    import math as _math
+    if IS_MOBILE:
+        _grid_rows = _math.ceil(n / 2)   # 2 colunas no mobile
+        altura = 80 + 50 + 50 + _grid_rows * 160 + 160 + 80  # header+prog+aviso+grid+banco+btn
+    else:
+        _grid_rows = _math.ceil(n / 4)   # 4 colunas no PC (sidebar layout)
+        altura = 80 + 50 + 50 + max(_grid_rows * 190, 200) + 80
 
     html = f"""<!DOCTYPE html><html lang="pt-BR"><head>
 <meta charset="UTF-8">
@@ -542,8 +518,8 @@ body{{font-family:'Nunito',sans-serif;
   background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);
   padding:16px 20px 28px;color:white;user-select:none;}}
 
-/* ── LAYOUT MASTER: sidebar esquerda + conteúdo direita ── */
-#master{{display:grid;grid-template-columns:180px 1fr;gap:16px;align-items:start;}}
+/* ── LAYOUT MASTER ── */
+#master{{display:grid;grid-template-columns:{'1fr' if IS_MOBILE else '180px 1fr'};gap:{'10' if IS_MOBILE else '16'}px;align-items:start;}}
 
 /* ── SIDEBAR: banco + contador + btn ── */
 #sidebar{{display:flex;flex-direction:column;gap:12px;position:sticky;top:16px;}}
@@ -614,7 +590,7 @@ body{{font-family:'Nunito',sans-serif;
   cursor:not-allowed;border:1.5px solid rgba(255,255,255,.1);box-shadow:none;}}
 
 /* GRID (conteúdo principal) */
-#grid{{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}}
+#grid{{display:grid;grid-template-columns:repeat({'2' if IS_MOBILE else '4'},1fr);gap:{'8' if IS_MOBILE else '12'}px;}}
 
 /* CAIXA */
 .caixa{{border-radius:16px;padding:18px 10px 16px;
@@ -638,7 +614,7 @@ body{{font-family:'Nunito',sans-serif;
   transition:transform .25s cubic-bezier(.34,1.56,.64,1);
   border:2px solid rgba(255,255,255,.2);margin-bottom:8px;}}
 .c-cnt.bump{{transform:scale(1.5);}}
-.c-touch-btns{{display:none;}}
+.c-touch-btns{{display:flex;}}
 
 /* MINI CARTÕES */
 .c-pilha{{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;padding:2px 4px 0;}}
@@ -864,17 +840,83 @@ document.getElementById('btn').addEventListener('click',()=>{{
 initGrid();atualizar();
 </script></body></html>"""
 
-    components.html(html + f"<!-- reset:{st.session_state.reset_key} -->", height=700, scrolling=False)
+    if IS_MOBILE:
+        # ── MOBILE: interface nativa com botões +/− via Streamlit ───────────
+        components.html(html + f"<!-- reset:{st.session_state.reset_key} -->", height=altura, scrolling=False)
 
-    col_v1,col_v2,col_v3=st.columns([1,1,1])
-    with col_v1:
-        if st.button("↩️ Voltar para o início", use_container_width=True):
-            st.session_state.pagina="inicio"; st.rerun()
-    with col_v2:
-        if st.button("🔄 Zerar tudo", use_container_width=True):
-            st.session_state.distribuicao={k:0 for k in GASTOS}
-            st.session_state.reset_key = st.session_state.get("reset_key",0)+1
-            st.rerun()
+        # Botões de controle mobile
+        col_v1,col_v2 = st.columns(2)
+        with col_v1:
+            if st.button("↩️ Início", use_container_width=True):
+                st.session_state.pagina="inicio"; st.rerun()
+        with col_v2:
+            if st.button("🔄 Zerar", use_container_width=True):
+                st.session_state.distribuicao={k:0 for k in GASTOS}
+                st.session_state.reset_key = st.session_state.get("reset_key",0)+1
+                st.rerun()
+
+        # Interface de stepper nativa para mobile (não depende de drag)
+        st.markdown("---")
+        st.markdown('<div style="font-family:Fredoka One,cursive;font-size:1rem;color:#ffd700;margin-bottom:.5rem;">💳 Distribuir cartões:</div>', unsafe_allow_html=True)
+        total_usado = sum(st.session_state.distribuicao.values())
+        restam = TOTAL_CARTOES - total_usado
+
+        # Barra de progresso nativa
+        st.progress(total_usado / TOTAL_CARTOES if TOTAL_CARTOES > 0 else 0)
+        if restam == 0:
+            st.markdown('<div style="background:rgba(34,197,94,.15);border:1.5px solid #22c55e;border-radius:10px;padding:.5rem;text-align:center;color:#4ade80;font-weight:700;margin-bottom:.5rem;">🎉 Todos os cartões distribuídos!</div>', unsafe_allow_html=True)
+        else:
+            st.markdown(f'<div style="background:rgba(251,191,36,.15);border:1.5px solid #fbbf24;border-radius:10px;padding:.5rem;text-align:center;color:#fbbf24;font-weight:700;margin-bottom:.5rem;">💡 Faltam {restam} cartão(ões)</div>', unsafe_allow_html=True)
+
+        for area, info in GASTOS.items():
+            emoji = area.split()[0]
+            label = area.split(" ", 1)[1] if " " in area else area
+            qtd = st.session_state.distribuicao.get(area, 0)
+            col_a, col_b, col_c, col_d = st.columns([2.5, 1, 1, 1])
+            with col_a:
+                st.markdown(
+                    f'<div style="padding:.4rem 0;font-size:.9rem;color:#e2e8f0;">'
+                    f'<span style="font-size:1.1rem">{emoji}</span> {label}</div>',
+                    unsafe_allow_html=True)
+            with col_b:
+                st.markdown(
+                    f'<div style="background:{info["cor"]}33;border:1.5px solid {info["cor"]};'
+                    f'border-radius:8px;padding:.3rem;text-align:center;'
+                    f'font-family:Fredoka One,cursive;font-size:1.2rem;color:white;">{qtd}</div>',
+                    unsafe_allow_html=True)
+            with col_c:
+                if st.button("➕", key=f"mob_plus_{area}", disabled=(restam <= 0), use_container_width=True):
+                    st.session_state.distribuicao[area] = qtd + 1
+                    st.rerun()
+            with col_d:
+                if st.button("➖", key=f"mob_minus_{area}", disabled=(qtd <= 0), use_container_width=True):
+                    st.session_state.distribuicao[area] = qtd - 1
+                    st.rerun()
+
+        st.markdown("---")
+        if restam == 0:
+            if st.button("✅ Confirmar minha escolha!", use_container_width=True):
+                salvar_dados({"nome":st.session_state.nome,"idade":st.session_state.idade,
+                              "escolaridade":st.session_state.escolaridade,
+                              "timestamp":datetime.now().isoformat(),
+                              "distribuicao":dict(st.session_state.distribuicao)})
+                st.session_state.enviado=True; st.session_state.pagina="resultado"; st.rerun()
+        else:
+            st.button("✅ Confirmar minha escolha!", use_container_width=True, disabled=True)
+
+    else:
+        # ── DESKTOP: drag & drop via components.html ─────────────────────────
+        components.html(html + f"<!-- reset:{st.session_state.reset_key} -->", height=altura, scrolling=False)
+
+        col_v1,col_v2,col_v3=st.columns([1,1,1])
+        with col_v1:
+            if st.button("↩️ Voltar para o início", use_container_width=True):
+                st.session_state.pagina="inicio"; st.rerun()
+        with col_v2:
+            if st.button("🔄 Zerar tudo", use_container_width=True):
+                st.session_state.distribuicao={k:0 for k in GASTOS}
+                st.session_state.reset_key = st.session_state.get("reset_key",0)+1
+                st.rerun()
 
 elif st.session_state.pagina == "resultado":
     dist   = st.session_state.distribuicao
@@ -1017,7 +1059,7 @@ elif st.session_state.pagina == "resultado":
 
     # ── BLOCO 2: O que ficou de fora e o custo disso ─────────────
     custo_partes = []
-    if s_trans == 0:
+    if s_trans == 0:  # 0 = sem investimento = ruim
         custo_partes.append(
             "Sem <b style='color:#22c55e'>Transferência de Renda</b>, o consumo popular "
             "ficou sem base. Para Kalecki, é aqui que começa a recessão: famílias sem renda "
@@ -1207,7 +1249,7 @@ elif st.session_state.pagina == "resultado":
 
         st.markdown("---")
         st.markdown('<div style="font-family:Fredoka One,cursive;font-size:1.1rem;color:#93c5fd;margin:.8rem 0 .4rem;">📖 Análise kaleckiana — área por área</div>', unsafe_allow_html=True)
-        st.markdown('<div style="font-size:.8rem;color:#64748b;margin-bottom:.8rem;">Cada área recebe um diagnóstico baseado exatamente em quantos cartões você colocou.</div>', unsafe_allow_html=True)
+        st.markdown('<div style="font-size:.8rem;color:#64748b;margin-bottom:.8rem;">1 cartão = ideal · 0 cartões = sem investimento · 2+ cartões = alto investimento com retorno decrescente</div>', unsafe_allow_html=True)
 
         areas_ord = sorted(dist.items(), key=lambda x:-x[1])
         for area, qtd in areas_ord:
@@ -1232,11 +1274,11 @@ elif st.session_state.pagina == "resultado":
 
         # Alertas globais kaleckianos
         st.markdown("---")
-        if s_div >= 4:
+        if s_div >= 2:
             st.markdown('<div class="chip-verm">⚠️ <b>Alerta Kaleckiano:</b> Você repetiu o erro do Brasil real — mais de 40% para a dívida. Kalecki chamaria isso de captura do Estado pelo capital financeiro.</div>', unsafe_allow_html=True)
-        if s_trans >= 3:
+        if s_trans >= 1:
             st.markdown('<div class="chip-verde">🌟 <b>Elogio Kaleckiano:</b> Excelente aposta em transferência de renda! É o gasto com maior multiplicador de curto prazo segundo Kalecki.</div>', unsafe_allow_html=True)
-        if s_educ >= 3 and s_saude >= 3:
+        if s_educ >= 1 and s_saude >= 1:
             st.markdown('<div class="chip-verde">🌟 <b>Elogio Kaleckiano:</b> Investir bem em saúde E educação é a combinação que mais reduz desigualdade no longo prazo.</div>', unsafe_allow_html=True)
         if s_educ == 0 or s_saude == 0:
             st.markdown('<div class="chip-verm">💀 <b>Colapso Kaleckiano:</b> Zerar saúde ou educação é catastrófico. Kalecki diria que sem esses pilares, não há demanda agregada sustentável.</div>', unsafe_allow_html=True)
