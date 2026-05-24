@@ -1215,17 +1215,19 @@ elif st.session_state.pagina == "resultado":
     # ── TAB 2 ────────────────────────────────────────────────────────────────
     with tab2:
         st.markdown('<div style="font-family:Fredoka One,cursive;font-size:1.3rem;color:#ffd700;margin-bottom:.8rem;">🌍 O que especialistas dizem sobre seu governo?</div>', unsafe_allow_html=True)
+
         st.markdown('''
-        <div style="background:rgba(59,130,246,.1);border:1.5px solid rgba(59,130,246,.35);
-             border-radius:14px;padding:1rem 1.2rem;margin-bottom:1rem;">
-          <div style="font-family:Fredoka One,cursive;color:#93c5fd;font-size:1rem;margin-bottom:.4rem;">
-               📚 Fundamento teórico</div>
-          <div style="font-size:.88rem;color:#cbd5e1;line-height:1.6;">
-            Algumas abordagens econômicas enfatizam que <b>onde</b> o governo gasta importa tanto quanto <b>quanto</b> gasta.
-            Gastos em saúde, educação e transferência de renda tendem a ter multiplicadores maiores do que gastos em dívida ou defesa,
-            porque colocam renda diretamente nas mãos de consumidores que gastam imediatamente.
-          </div>
-        </div>''', unsafe_allow_html=True)
+<div style="background:rgba(59,130,246,.1);border:1.5px solid rgba(59,130,246,.35);
+     border-radius:14px;padding:1rem 1.2rem;margin-bottom:1rem;">
+  <div style="font-family:Fredoka One,cursive;color:#93c5fd;font-size:1rem;margin-bottom:.4rem;">
+       📚 Quem foi Kalecki?</div>
+  <div style="font-size:.88rem;color:#cbd5e1;line-height:1.6;">
+    <b style="color:#fbbf24">Michal Kalecki</b> (1899–1970) foi o economista que mostrou que
+    <b>onde</b> o governo gasta importa tanto quanto <b>quanto</b> gasta.
+    Para ele, gastos em saúde, educação e transferência de renda têm
+    <b style="color:#4ade80">multiplicadores muito maiores</b> do que gastos em dívida ou defesa.
+  </div>
+</div>''', unsafe_allow_html=True)
 
         # Indicadores visuais
         col_r, col_g = st.columns([1,1])
