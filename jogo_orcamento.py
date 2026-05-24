@@ -262,10 +262,8 @@ diff = TOTAL_CARTOES - sum(REAL_CARTOES.values())
 if diff != 0:
     REAL_CARTOES["💰 Serviço da Dívida"] += diff
 
-# ── Scores kaleckianos por nível (0-4+) ─────────────────────────────────────
+# ── Scores por nível (0-4+) ─────────────────────────────────────
 # Cada indicador tem score 0-100 para cada nível de cartão
-# Reflete mudança brusca: 0→1 é enorme; 3→4 é marginal ou negativo
-# Scores: 0=sem investimento, 1=ideal, 2+=excesso (retorno decrescente)
 SCORES_POR_NIVEL = {
     "🏫 Educação": {
         0: {"emprego":0,  "consumo":0,  "desigualdade":0,  "investimento":0,  "divida":50},
@@ -387,7 +385,7 @@ if st.session_state.pagina == "inicio":
         <div style="background:#1e293b;border-radius:18px;
              padding:clamp(1rem,3vw,1.8rem) clamp(.8rem,3vw,1.5rem) .8rem;
              border:1px solid #334155;box-shadow:0 8px 32px rgba(0,0,0,.4);margin-bottom:.8rem;">
-        <div style="font-family:'Fredoka One',cursive;font-size:clamp(1.1rem,3.5vw,1.4rem);
+        <div style="font-family:Fredoka One,cursive;font-size:clamp(1.1rem,3.5vw,1.4rem);
              color:#ffd700;margin-bottom:.8rem;text-align:center;">👋 Antes de começar</div>
         </div>""", unsafe_allow_html=True)
 
@@ -410,7 +408,7 @@ if st.session_state.pagina == "inicio":
             "Graduação",
             "Pós-graduação / Mestrado / Doutorado",
         ], key="in_esc")
-        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("<​br>", unsafe_allow_html=True)
         if st.button("🚀 Começar o Jogo!", use_container_width=True):
             if nome.strip()=="" or escolaridade=="— selecione —":
                 st.warning("⚠️ Preencha seu nome e escolaridade!")
@@ -427,7 +425,7 @@ if st.session_state.pagina == "inicio":
         itens = [
             ("🃏", f'Você recebe <b style="color:#ffd700">{TOTAL_CARTOES} cartões</b> representando o orçamento do governo. É pouco — de propósito.'),
             ("🎯", 'Distribua nas <b style="color:#4ade80">7 áreas de gasto</b>. Cada cartão a mais num lugar é um a menos em outro.'),
-            ("🔍", 'Veja <b style="color:#a78bfa">o que acontece com a economia</b> com base nas suas escolhas — visão de Kalecki.'),
+            ("🔍", 'Veja <b style="color:#a78bfa">o que acontece com a economia</b> com base nas suas escolhas.'),
             ("🏦", 'Descubra o <b style="color:#fbbf24">paradoxo do orçamento público</b>: o governo emite a própria moeda — então por que a restrição existe?'),
         ]
         rows = "".join([
@@ -880,7 +878,7 @@ initGrid();atualizar();
 
     if IS_MOBILE:
         # ── MOBILE: interface nativa com botões +/− via Streamlit ───────────
-        components.html(html + f"<!-- reset:{st.session_state.reset_key} -->", height=altura, scrolling=False)
+        components.html(html + f"<​!-- reset:{st.session_state.reset_key} -->", height=altura, scrolling=False)
 
         # Botões de controle mobile
         col_v1,col_v2 = st.columns(2)
@@ -944,7 +942,7 @@ initGrid();atualizar();
 
     else:
         # ── DESKTOP: drag & drop via components.html ─────────────────────────
-        components.html(html + f"<!-- reset:{st.session_state.reset_key} -->", height=altura, scrolling=False)
+        components.html(html + f"<​!-- reset:{st.session_state.reset_key} -->", height=altura, scrolling=False)
 
         col_v1,col_v2,col_v3=st.columns([1,1,1])
         with col_v1:
@@ -981,13 +979,13 @@ elif st.session_state.pagina == "resultado":
              background:linear-gradient(90deg,#f97316,#eab308,#22c55e);
              -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
           Como ficou sua cidade?</div>
-        <div style="font-size:.9rem;color:#93c5fd;">Governo de <b style="color:#ffd700">{nome}</b> — análise kaleckiana completa</div>
+        <div style="font-size:.9rem;color:#93c5fd;">Governo de <b style="color:#ffd700">{nome}</b> — análise econômica completa</div>
       </div>
     </div>''', unsafe_allow_html=True)
 
 
     # ══════════════════════════════════════════════════════════════
-    # NARRATIVA KALECKIANA — sem níveis, baseada no mix de escolhas
+    # NARRATIVA — sem menções nomeadas
     # ══════════════════════════════════════════════════════════════
 
     def bloco(emoji, titulo, cor, texto):
@@ -1036,7 +1034,7 @@ elif st.session_state.pagina == "resultado":
         partes_eco.append(
             f"Ao destinar <b style='color:#22c55e'>{s_trans} cartão(ões) à Transferência de Renda</b>, "
             "você colocou dinheiro diretamente nas mãos de quem mais consome proporcionalmente. "
-            "Para Kalecki, esse é o multiplicador mais imediato: famílias pobres gastam quase tudo "
+            "Esse é o multiplicador mais imediato: famílias pobres gastam quase tudo "
             "que recebem — em comida, transporte, roupa — aquecendo o comércio local e gerando "
             "empregos em cascata."
         )
@@ -1044,9 +1042,8 @@ elif st.session_state.pagina == "resultado":
     if s_educ > 0 and s_saude > 0:
         partes_eco.append(
             f"A combinação de <b style='color:#3b82f6'>Educação ({s_educ})</b> e "
-            f"<b style='color:#ef4444'>Saúde ({s_saude})</b> é o que Kalecki chamava de "
-            "investimento no trabalhador: trabalhadores saudáveis produzem mais, "
-            "qualificados ganham mais — e quem ganha mais consome mais. "
+            f"<b style='color:#ef4444'>Saúde ({s_saude})</b> fortalece o capital humano: "
+            "trabalhadores saudáveis produzem mais, qualificados ganham mais — e quem ganha mais consome mais. "
             "É o multiplicador de longo prazo que reduz desigualdade de forma estrutural."
         )
     elif s_educ > 0:
@@ -1058,9 +1055,8 @@ elif st.session_state.pagina == "resultado":
     elif s_saude > 0:
         partes_eco.append(
             f"Com <b style='color:#ef4444'>{s_saude} cartão(ões) em Saúde</b>, você preservou "
-            "a força de trabalho. Para Kalecki, saúde pública é redistribuição disfarçada: "
-            "famílias pobres não precisam gastar com plano privado e liberam renda "
-            "para consumir outras coisas."
+            "a força de trabalho. Saúde pública reduz a necessidade de gasto privado com saúde, "
+            "liberando renda para consumo em outras áreas."
         )
 
     if s_hab > 0:
@@ -1075,23 +1071,22 @@ elif st.session_state.pagina == "resultado":
         partes_eco.append(
             f"Destinar <b style='color:#6b7280'>{s_div} cartão(ões) ao Serviço da Dívida</b> "
             "significa transferir recursos públicos para credores — bancos e investidores. "
-            "Para Kalecki, esse dinheiro sai da economia produtiva: quem recebe juros tende "
-            "a poupar, não a consumir. O multiplicador é negativo do ponto de vista social."
+            "Esse dinheiro tende a ser poupado em vez de impulsionar o consumo imediato, "
+            "reduzindo o efeito multiplicador sobre a economia local."
         )
 
     if s_seg > 0 and s_trans == 0 and s_educ == 0:
         partes_eco.append(
             f"Com <b style='color:#8b5cf6'>{s_seg} cartão(ões) em Segurança e Defesa</b> "
             "e nada em renda ou educação, você apostou na contenção em vez da prevenção. "
-            "Kalecki diria: segurança sem investimento social é tratar o sintoma, "
-            "não a causa — a desigualdade."
+            "Segurança sem investimento social tende a tratar sintomas e não as causas da desigualdade."
         )
 
     if not partes_eco:
         partes_eco.append(
             "Suas escolhas ficaram muito dispersas para gerar um multiplicador claro. "
-            "Para Kalecki, concentrar recursos nos setores de maior impacto — "
-            "renda, saúde, educação — é mais eficiente do que distribuir pouco em tudo."
+            "Concentrar recursos nos setores de maior impacto — renda, saúde, educação — costuma ser "
+            "mais eficiente do que distribuir pouco em tudo."
         )
 
     economia_texto = " ".join(partes_eco[:3])
@@ -1101,9 +1096,8 @@ elif st.session_state.pagina == "resultado":
     if s_trans == 0:  # 0 = sem investimento = ruim
         custo_partes.append(
             "Sem <b style='color:#22c55e'>Transferência de Renda</b>, o consumo popular "
-            "ficou sem base. Para Kalecki, é aqui que começa a recessão: famílias sem renda "
-            "não consomem, empresas vendem menos, demitem mais — uma espiral que começa "
-            "embaixo e sobe."
+            "ficou sem base. Isso pode desencadear uma recessão: famílias sem renda "
+            "não consomem, empresas vendem menos, demitem mais — uma espiral descendente."
         )
     if s_educ == 0 and s_saude == 0:
         custo_partes.append(
@@ -1115,13 +1109,12 @@ elif st.session_state.pagina == "resultado":
         )
     if areas_sem:
         nomes_sem = ", ".join([
-            f"<b style='color:{GASTOS[a]["cor"]}'>{a.split(" ",1)[1]}</b>"
+            f"<b style='color:{GASTOS[a]['cor']}'>{a.split(' ',1)[1]}</b>"
             for a in areas_sem[:3]
         ])
         custo_partes.append(
             f"Você não alocou nada em {nomes_sem}. "
-            "Para Kalecki, investimento zero não significa apenas serviço ausente — "
-            "significa que o multiplicador daquele setor foi completamente desperdiçado."
+            "Investimento zero significa que o multiplicador daquele setor foi completamente desperdiçado."
         )
 
     if not custo_partes:
@@ -1132,7 +1125,7 @@ elif st.session_state.pagina == "resultado":
 
     custo_texto = " ".join(custo_partes[:2])
 
-    # ── BLOCO 3: Restrição orçamentária — visão de Kalecki ───────
+    # ── BLOCO 3: Restrição orçamentária — perspectiva política ─────
     restricao = (
         "Você teve apenas <b style='color:#ffd700'>5 cartões</b> para distribuir entre "
         f"{len(GASTOS)} áreas. Isso não é acidente — representa uma escolha política "
@@ -1151,14 +1144,12 @@ elif st.session_state.pagina == "resultado":
         "enquanto saúde, educação e habitação brigam pelo restante."
     )
 
-    # frases removidas
-
     # ── Renderiza ─────────────────────────────────────────────────
     st.markdown('''
     <div style="font-family:Fredoka One,cursive;font-size:1.3rem;
         color:#ffd700;margin:.2rem 0 .4rem;">📖 A história do seu governo</div>
     <div style="font-size:.78rem;color:#64748b;margin-bottom:.9rem;">
-        Análise kaleckiana baseada no mix das suas escolhas
+        Análise baseada no mix das suas escolhas
     </div>''', unsafe_allow_html=True)
 
     st.markdown(card_narrativa(
@@ -1200,7 +1191,7 @@ elif st.session_state.pagina == "resultado":
         )
         st.plotly_chart(fig_minha, use_container_width=True)
 
-        st.markdown('<div style="font-family:Fredoka One,cursive;font-size:1.1rem;color:#93c5fd;margin:1rem 0 .6rem;">🎯 Status kaleckiano de cada setor</div>', unsafe_allow_html=True)
+        st.markdown('<div style="font-family:Fredoka One,cursive;font-size:1.1rem;color:#93c5fd;margin:1rem 0 .6rem;">🎯 Status por nível de serviço de cada setor</div>', unsafe_allow_html=True)
         # Responsive: 4 cols on PC, 2 on mobile via CSS
         cols_s = st.columns(min(len(GASTOS), 4))
         for i,(area,info) in enumerate(GASTOS.items()):
@@ -1223,17 +1214,16 @@ elif st.session_state.pagina == "resultado":
 
     # ── TAB 2 ────────────────────────────────────────────────────────────────
     with tab2:
-        st.markdown('<div style="font-family:Fredoka One,cursive;font-size:1.3rem;color:#ffd700;margin-bottom:.8rem;">🌍 O que Kalecki diria sobre seu governo?</div>', unsafe_allow_html=True)
+        st.markdown('<div style="font-family:Fredoka One,cursive;font-size:1.3rem;color:#ffd700;margin-bottom:.8rem;">🌍 O que especialistas dizem sobre seu governo?</div>', unsafe_allow_html=True)
         st.markdown('''
         <div style="background:rgba(59,130,246,.1);border:1.5px solid rgba(59,130,246,.35);
              border-radius:14px;padding:1rem 1.2rem;margin-bottom:1rem;">
           <div style="font-family:Fredoka One,cursive;color:#93c5fd;font-size:1rem;margin-bottom:.4rem;">
-               📚 Quem foi Kalecki?</div>
+               📚 Fundamento teórico</div>
           <div style="font-size:.88rem;color:#cbd5e1;line-height:1.6;">
-            <b style="color:#fbbf24">Michal Kalecki</b> (1899–1970) foi o economista que mostrou que
-            <b>onde</b> o governo gasta importa tanto quanto <b>quanto</b> gasta.
-            Para ele, gastos em saúde, educação e transferência de renda têm
-            <b style="color:#4ade80">multiplicadores muito maiores</b> do que gastos em dívida ou defesa.
+            Algumas abordagens econômicas enfatizam que <b>onde</b> o governo gasta importa tanto quanto <b>quanto</b> gasta.
+            Gastos em saúde, educação e transferência de renda tendem a ter multiplicadores maiores do que gastos em dívida ou defesa,
+            porque colocam renda diretamente nas mãos de consumidores que gastam imediatamente.
           </div>
         </div>''', unsafe_allow_html=True)
 
@@ -1270,7 +1260,7 @@ elif st.session_state.pagina == "resultado":
                     f'</div></div></div>', unsafe_allow_html=True)
 
         st.markdown("---")
-        st.markdown('<div style="font-family:Fredoka One,cursive;font-size:1.1rem;color:#93c5fd;margin:.8rem 0 .4rem;">📖 Análise kaleckiana — área por área</div>', unsafe_allow_html=True)
+        st.markdown('<div style="font-family:Fredoka One,cursive;font-size:1.1rem;color:#93c5fd;margin:.8rem 0 .4rem;">📖 Análise — área por área</div>', unsafe_allow_html=True)
         st.markdown('<div style="font-size:.8rem;color:#64748b;margin-bottom:.8rem;">1 cartão = ideal · 0 cartões = sem investimento · 2+ cartões = alto investimento com retorno decrescente</div>', unsafe_allow_html=True)
 
         areas_ord = sorted(dist.items(), key=lambda x:-x[1])
@@ -1294,16 +1284,16 @@ elif st.session_state.pagina == "resultado":
                 f'<p style="font-size:.87rem;color:#cbd5e1;line-height:1.65;margin:0">{texto}</p>'
                 f'</div>', unsafe_allow_html=True)
 
-        # Alertas globais kaleckianos
+        # Alertas globais
         st.markdown("---")
         if s_div >= 2:
-            st.markdown('<div class="chip-verm">⚠️ <b>Alerta Kaleckiano:</b> Você repetiu o erro do Brasil real — mais de 40% para a dívida. Kalecki chamaria isso de captura do Estado pelo capital financeiro.</div>', unsafe_allow_html=True)
+            st.markdown('<div class="chip-verm">⚠️ <b>Alerta:</b> Você repetiu o erro do Brasil real — mais de 40% para a dívida. Isso representa captura do Estado pelo capital financeiro.</div>', unsafe_allow_html=True)
         if s_trans >= 1:
-            st.markdown('<div class="chip-verde">🌟 <b>Elogio Kaleckiano:</b> Excelente aposta em transferência de renda! É o gasto com maior multiplicador de curto prazo segundo Kalecki.</div>', unsafe_allow_html=True)
+            st.markdown('<div class="chip-verde">🌟 <b>Elogio:</b> Excelente aposta em transferência de renda! É o gasto com maior multiplicador de curto prazo.</div>', unsafe_allow_html=True)
         if s_educ >= 1 and s_saude >= 1:
-            st.markdown('<div class="chip-verde">🌟 <b>Elogio Kaleckiano:</b> Investir bem em saúde E educação é a combinação que mais reduz desigualdade no longo prazo.</div>', unsafe_allow_html=True)
+            st.markdown('<div class="chip-verde">🌟 <b>Elogio:</b> Investir bem em saúde E educação é a combinação que mais reduz desigualdade no longo prazo.</div>', unsafe_allow_html=True)
         if s_educ == 0 or s_saude == 0:
-            st.markdown('<div class="chip-verm">💀 <b>Colapso Kaleckiano:</b> Zerar saúde ou educação é catastrófico. Kalecki diria que sem esses pilares, não há demanda agregada sustentável.</div>', unsafe_allow_html=True)
+            st.markdown('<div class="chip-verm">💀 <b>Colapso:</b> Zerar saúde ou educação é catastrófico. Sem esses pilares, a demanda agregada sustentável fica comprometida.</div>', unsafe_allow_html=True)
 
     # ── TAB 3 ────────────────────────────────────────────────────────────────
     with tab3:
@@ -1342,7 +1332,7 @@ elif st.session_state.pagina == "resultado":
                 ))
                 fig_r2.update_layout(
                     polar=dict(radialaxis=dict(visible=True,range=[0,100],tickfont=dict(color="#94a3b8"),gridcolor="rgba(148,163,184,.2)",linecolor="rgba(148,163,184,.2)"),angularaxis=dict(tickfont=dict(color="#cbd5e1"),gridcolor="rgba(148,163,184,.15)")),
-                    title="Perfil coletivo (Kalecki)",
+                    title="Perfil coletivo",
                     title_font=dict(family="Fredoka One",size=16,color="#ffd700"),
                     paper_bgcolor="rgba(13,27,42,0)",font=dict(family="Nunito",color="#e2e8f0"),
                     height=300,margin=dict(t=45,b=5,l=20,r=20),
@@ -1397,7 +1387,7 @@ elif st.session_state.pagina == "resultado":
             st.info("Nenhuma resposta ainda.")
 
     # ══════════════════════════════════════════════════════════════
-    # BLOCO EDUCATIVO — Arcabouço Fiscal, Restrição e Kalecki
+    # BLOCO EDUCATIVO — Arcabouço Fiscal, Restrição e perspectiva teórica
     # ══════════════════════════════════════════════════════════════
     st.markdown("---")
     st.markdown('''<div style="font-family:Fredoka One,cursive;font-size:1.4rem;
@@ -1449,20 +1439,14 @@ gastar mais gera emprego e renda <i>sem</i> inflação. Se a economia já está 
 gastar mais sobe preços. Esse é o verdadeiro debate, não "tem ou não tem dinheiro".
 """)
 
-    bloco4 = card_edu("🔬", "O que Kalecki diria sobre tudo isso?", "#22c55e", """
-Michal Kalecki (1899–1970) foi um dos primeiros economistas a perceber que
-<b style='color:#4ade80'>o pleno emprego é tecnicamente possível</b> — mas politicamente indesejável
-para parte da elite econômica.<br><br>
-Seu argumento central: se o governo gasta e mantém pleno emprego,
-os trabalhadores <b style='color:#fbbf24'>perdem o medo de serem demitidos</b> e passam a
-reivindicar mais salários e direitos. Isso <i>reduz o poder dos patrões</i>.
-Por isso, para Kalecki, a preferência pelo "equilíbrio fiscal" não é técnica —
-é <b style='color:#f472b6'>uma escolha de classe</b>: manter o desemprego como disciplinador
-da força de trabalho.<br><br>
-O arcabouço fiscal, nessa leitura, não é neutro. É um mecanismo que
-<b style='color:#93c5fd'>prioriza a confiança do mercado financeiro</b> em detrimento do
-investimento público que reduziria desigualdade e ampliaria o consumo popular —
-exatamente os multiplicadores que Kalecki mais valorizava.
+    bloco4 = card_edu("🔬", "Uma perspectiva teórica sobre pleno emprego e política", "#22c55e", """
+Algumas teorias econômicas mostram que o pleno emprego é tecnicamente possível — mas que,
+politicamente, pode haver resistência de setores que temem perder poder econômico.
+Se o governo garante pleno emprego, trabalhadores perdem o medo de serem demitidos
+e passam a reivindicar melhores salários e condições. Isso reduz o poder de certos grupos
+econômicos e altera a relação de forças sociais.<br><br>
+Daí vem a leitura: preferir equilíbrio fiscal a todo custo pode não ser apenas técnica —
+pode ser também uma escolha que preserva uma disciplina social sobre os trabalhadores.
 """)
 
     bloco5 = card_edu("💡", "O que o jogo não consegue mostrar — mas a vida real mostra", "#fbbf24", """
@@ -1471,14 +1455,13 @@ No jogo, você tinha 5 cartões fixos e 7 áreas. Na vida real, o governo pode
 O Brasil gasta hoje mais de <b style='color:#f87171'>40% do orçamento com juros e amortização da dívida</b>.
 Isso significa que, a cada R$1 arrecadado em impostos, quase R$0,45 vai para bancos e
 investidores antes de chegar em saúde, educação ou moradia.<br><br>
-A pergunta que Kalecki deixou para a história não é técnica.
-É política: <b style='color:#a78bfa'>"A quem serve o orçamento público?"</b><br>
+A pergunta que fica não é técnica. É política: <b style='color:#a78bfa'>"A quem serve o orçamento público?"</b><br>
 <i style='color:#64748b'>Essa é a pergunta que este jogo quer te ajudar a fazer.</i>
 """)
 
     st.markdown(bloco1 + bloco2 + bloco3 + bloco4 + bloco5, unsafe_allow_html=True)
 
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<​br>", unsafe_allow_html=True)
     st.markdown('<div style="background:#1e293b;border-radius:14px;padding:.8rem 1.2rem;border:1px solid #334155;margin-bottom:.5rem;"><div style="font-family:Fredoka One,cursive;color:#94a3b8;font-size:.85rem;text-align:center;margin-bottom:.6rem;">O que deseja fazer agora?</div></div>', unsafe_allow_html=True)
     col_r1,col_r2=st.columns(2)
     with col_r1:
