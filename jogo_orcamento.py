@@ -162,107 +162,7 @@ div[data-testid="metric-container"] [data-testid="stMetricValue"]{color:#e2e8f0 
 </style>
 """, unsafe_allow_html=True)
 
-# ═══════════════════════════════════════════════════════════════
-# TOTAL: 10 cartões
-# Cada setor tem uma escala de 0 a 4+ cartões com efeitos não-lineares
-# Referência: LOA 2025 + COFOG 2024 (proporções reais do Brasil)
-# ═══════════════════════════════════════════════════════════════
-TOTAL_CARTOES = 5
-
-# real_pct: distribuição real do Brasil (em % dos 10 cartões)
-# Nível de serviço por quantidade de cartões: 0=colapso, 1=sobrevivendo, 2=funcionando, 3=ideal, 4+=excesso
-GASTOS = {
-    "🏫 Educação": {
-        "cor": "#3b82f6",
-        "descricao": "Escolas, professores, bolsas e livros",
-        "real_pct": 13,
-        "niveis": {
-            0: ("Sem investimento",    "#7f1d1d", "Zero em educação. Para Kalecki, isso é catastrófico: sem qualificação, trabalhadores ficam presos em empregos de baixa renda, o consumo popular despenca e a economia entra em estagnação permanente."),
-            1: ("✅ Ideal",             "#22c55e", "Um cartão já é suficiente para manter o sistema educacional funcionando. Professores valorizados, escolas abertas, materiais disponíveis. Para Kalecki, esse gasto ativa o multiplicador de longo prazo."),
-            2: ("Alto investimento",   "#3b82f6", "Dois cartões representam um investimento acima do básico — excelência educacional, laboratórios, esporte. Bom, mas com retorno marginal menor que o primeiro cartão."),
-            3: ("Excesso relativo",    "#6366f1", "Três cartões em educação com orçamento de 5: o setor já está bem servido, mas esse recurso extra poderia ter mais impacto em transferência de renda ou saúde."),
-            4: ("Excesso",             "#6366f1", "Quatro cartões: retorno decrescente claro. Kalecki priorizaria redistribuir esse excesso onde o multiplicador é maior."),
-        },
-    },
-    "🏥 Saúde": {
-        "cor": "#ef4444",
-        "descricao": "Hospitais, médicos, remédios e UBSs",
-        "real_pct": 14,
-        "niveis": {
-            0: ("Sem investimento",    "#7f1d1d", "Sem saúde pública, trabalhadores doentes não produzem. Para Kalecki, saúde preserva a força de trabalho — base de toda produção. Sem ela, até os lucros empresariais despencam."),
-            1: ("✅ Ideal",             "#22c55e", "Um cartão mantém o SUS funcionando: UBSs abertas, médicos disponíveis, remédios acessíveis. Para Kalecki, saúde pública é redistribuição disfarçada — famílias pobres liberam renda para consumir outras coisas."),
-            2: ("Alto investimento",   "#3b82f6", "Dois cartões: saúde preventiva avançada, mortalidade em queda, sistema robusto. Bom, mas o segundo cartão tem retorno menor que o primeiro."),
-            3: ("Excesso relativo",    "#6366f1", "Três cartões: o sistema já está excelente. Kalecki redistribuiria esse excesso para transferência de renda, que tem multiplicador de curto prazo mais imediato."),
-            4: ("Excesso",             "#6366f1", "Quatro cartões: retorno decrescente acentuado."),
-        },
-    },
-    "🏠 Habitação": {
-        "cor": "#f97316",
-        "descricao": "Moradia popular e urbanização",
-        "real_pct": 5,
-        "niveis": {
-            0: ("Sem investimento",    "#7f1d1d", "Zero em habitação. Kalecki adorava obras públicas: construção civil é o setor que mais emprega trabalhadores sem qualificação. Sem esse investimento, o desemprego de base explode."),
-            1: ("✅ Ideal",             "#22c55e", "Um cartão já ativa o multiplicador da construção civil: obras públicas contratam pedreiros, eletricistas, engenheiros — que gastam seus salários no comércio local, gerando emprego em cascata."),
-            2: ("Alto investimento",   "#3b82f6", "Dois cartões: cidades planejadas, saneamento, transporte público. O segundo cartão ainda tem bom retorno dado o alto multiplicador da construção."),
-            3: ("Excesso relativo",    "#6366f1", "Três cartões: habitação já resolvida. Kalecki sugeriria redirecionar para transferência de renda."),
-            4: ("Excesso",             "#6366f1", "Quatro cartões: retorno decrescente claro."),
-        },
-    },
-    "🎭 Cultura": {
-        "cor": "#ec4899",
-        "descricao": "Museus, teatro, esporte e lazer",
-        "real_pct": 1,
-        "niveis": {
-            0: ("Sem investimento",    "#7f1d1d", "Sem cultura pública, lazer vira mercadoria cara e exclusiva. Para Kalecki, isso aumenta a desigualdade de bem-estar e fragiliza a coesão social."),
-            1: ("✅ Ideal",             "#22c55e", "Um cartão democratiza o lazer: museus, teatros, praças e esporte gratuitos. Kalecki via cultura como bem-estar dos trabalhadores — pessoas com lazer são mais produtivas e participativas."),
-            2: ("Alto investimento",   "#3b82f6", "Dois cartões: vida cultural rica, identidade social fortalecida, turismo aquecido."),
-            3: ("Excesso relativo",    "#6366f1", "Três cartões em cultura com orçamento de 5: Kalecki priorizaria saúde e renda antes de ampliar cultura além do básico."),
-            4: ("Excesso",             "#6366f1", "Quatro cartões: desproporcionalmente alto para o orçamento disponível."),
-        },
-    },
-    "🛡️ Segurança e Defesa": {
-        "cor": "#8b5cf6",
-        "descricao": "Polícia, bombeiros e forças armadas",
-        "real_pct": 9,
-        "niveis": {
-            0: ("Sem investimento",    "#7f1d1d", "Sem segurança, a economia paralisa. Kalecki reconhecia que ordem pública é pré-condição para qualquer atividade econômica — mas insistia que a causa da violência é a desigualdade, não a falta de policiamento."),
-            1: ("✅ Ideal",             "#22c55e", "Um cartão garante segurança básica. Para Kalecki, esse é o nível adequado — o Estado garante a ordem sem desperdiçar recursos que poderiam ir para multiplicadores sociais maiores."),
-            2: ("Alto investimento",   "#3b82f6", "Dois cartões: segurança robusta. Kalecki aceitaria, mas alertaria: segurança não reduz desigualdade por si só — ela protege o que existe, não transforma."),
-            3: ("Excesso — alerta",    "#f59e0b", "Três cartões em segurança e defesa: para Kalecki, esse excesso não gera consumo popular, não reduz desigualdade e pode comprimir liberdades."),
-            4: ("Excesso elevado",     "#ef4444", "Quatro cartões: o ponto de alerta kaleckiano — gasto militar excessivo representa transferência de recursos dos trabalhadores para setores que não os beneficiam."),
-        },
-    },
-    "🤝 Transferência de Renda": {
-        "cor": "#22c55e",
-        "descricao": "Bolsa Família, Pé-de-Meia, BPC",
-        "real_pct": 17,
-        "niveis": {
-            0: ("Sem investimento",    "#7f1d1d", "Zero em transferência de renda. Para Kalecki, é aqui que começa a recessão: sem renda nas mãos de quem precisa, o consumo popular colapsa, empresas vendem menos, demitem mais — espiral descendente."),
-            1: ("✅ Ideal",             "#22c55e", "Um cartão já ativa o multiplicador mais poderoso de Kalecki: cada real transferido para famílias pobres vira consumo imediato no comércio local, que contrata mais, que gera mais renda — crescimento de baixo para cima."),
-            2: ("Alto investimento",   "#10b981", "Dois cartões: pobreza drasticamente reduzida, consumo popular aquecido. Para Kalecki, esse segundo cartão ainda tem retorno altíssimo — famílias pobres gastam quase tudo que recebem."),
-            3: ("Excelente",           "#10b981", "Três cartões: o máximo do multiplicador kaleckiano em ação. Kalecki aprovaria plenamente."),
-            4: ("Impacto máximo",      "#10b981", "Quatro cartões: toda a lógica de Kalecki aplicada — demanda popular no máximo, desigualdade em queda, economia aquecida de baixo para cima."),
-        },
-    },
-    "💰 Serviço da Dívida": {
-        "cor": "#6b7280",
-        "descricao": "Juros e pagamento de dívidas do governo",
-        "real_pct": 41,
-        "niveis": {
-            0: ("Calote",              "#ef4444", "Zero na dívida significa calote. Kalecki reconhecia que algum pagamento é necessário para manter a credibilidade fiscal do Estado — mas insistia: a dívida pública é sobretudo riqueza dos credores, não obrigação sagrada."),
-            1: ("✅ Mínimo necessário", "#22c55e", "Um cartão: só o mínimo para honrar compromissos e manter o crédito do Estado. Para Kalecki, isso é o ideal — libera o máximo de recursos para os multiplicadores sociais."),
-            2: ("Acima do ideal",      "#f59e0b", "Dois cartões: já está acima do necessário. Cada cartão a mais aqui é um cartão a menos em saúde ou renda. Para Kalecki, isso representa escolha política de favorecer rentistas em detrimento dos trabalhadores."),
-            3: ("Excessivo",           "#ef4444", "Três cartões na dívida: o padrão do Brasil real. Kalecki denunciaria isso como captura do Estado pelo capital financeiro."),
-            4: ("Muito excessivo",     "#7f1d1d", "Quatro cartões — 80% do orçamento para credores. O anti-Kalecki em sua forma mais extrema: dinheiro público remunera quem já é rico enquanto saúde e educação colapsam."),
-        },
-    },
-}
-REAL_CARTOES = {k: round(v["real_pct"] / 100 * TOTAL_CARTOES) for k, v in GASTOS.items()}
-diff = TOTAL_CARTOES - sum(REAL_CARTOES.values())
-if diff != 0:
-    REAL_CARTOES["💰 Serviço da Dívida"] += diff
-
-# ── Scores kaleckianos por nível (0-4+) ─────────────────────────────────────
+# ── Scores por nível (0-4+) ─────────────────────────────────────
 # Cada indicador tem score 0-100 para cada nível de cartão
 # Reflete mudança brusca: 0→1 é enorme; 3→4 é marginal ou negativo
 # Scores: 0=sem investimento, 1=ideal, 2+=excesso (retorno decrescente)
@@ -981,13 +881,13 @@ elif st.session_state.pagina == "resultado":
              background:linear-gradient(90deg,#f97316,#eab308,#22c55e);
              -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
           Como ficou sua cidade?</div>
-        <div style="font-size:.9rem;color:#93c5fd;">Governo de <b style="color:#ffd700">{nome}</b> — análise kaleckiana completa</div>
+        <div style="font-size:.9rem;color:#93c5fd;">Governo de <b style="color:#ffd700">{nome}</b> — análise completa</div>
       </div>
     </div>''', unsafe_allow_html=True)
 
 
     # ══════════════════════════════════════════════════════════════
-    # NARRATIVA KALECKIANA — sem níveis, baseada no mix de escolhas
+    # NARRATIVA — sem níveis, baseada no mix de escolhas
     # ══════════════════════════════════════════════════════════════
 
     def bloco(emoji, titulo, cor, texto):
@@ -1036,7 +936,7 @@ elif st.session_state.pagina == "resultado":
         partes_eco.append(
             f"Ao destinar <b style='color:#22c55e'>{s_trans} cartão(ões) à Transferência de Renda</b>, "
             "você colocou dinheiro diretamente nas mãos de quem mais consome proporcionalmente. "
-            "Para Kalecki, esse é o multiplicador mais imediato: famílias pobres gastam quase tudo "
+            "Esse é o multiplicador mais imediato: famílias pobres gastam quase tudo "
             "que recebem — em comida, transporte, roupa — aquecendo o comércio local e gerando "
             "empregos em cascata."
         )
@@ -1044,7 +944,7 @@ elif st.session_state.pagina == "resultado":
     if s_educ > 0 and s_saude > 0:
         partes_eco.append(
             f"A combinação de <b style='color:#3b82f6'>Educação ({s_educ})</b> e "
-            f"<b style='color:#ef4444'>Saúde ({s_saude})</b> é o que Kalecki chamava de "
+            f"<b style='color:#ef4444'>Saúde ({s_saude})</b> é o "
             "investimento no trabalhador: trabalhadores saudáveis produzem mais, "
             "qualificados ganham mais — e quem ganha mais consome mais. "
             "É o multiplicador de longo prazo que reduz desigualdade de forma estrutural."
@@ -1058,7 +958,7 @@ elif st.session_state.pagina == "resultado":
     elif s_saude > 0:
         partes_eco.append(
             f"Com <b style='color:#ef4444'>{s_saude} cartão(ões) em Saúde</b>, você preservou "
-            "a força de trabalho. Para Kalecki, saúde pública é redistribuição disfarçada: "
+            "a força de trabalho. Saúde pública é redistribuição disfarçada: "
             "famílias pobres não precisam gastar com plano privado e liberam renda "
             "para consumir outras coisas."
         )
@@ -1075,7 +975,7 @@ elif st.session_state.pagina == "resultado":
         partes_eco.append(
             f"Destinar <b style='color:#6b7280'>{s_div} cartão(ões) ao Serviço da Dívida</b> "
             "significa transferir recursos públicos para credores — bancos e investidores. "
-            "Para Kalecki, esse dinheiro sai da economia produtiva: quem recebe juros tende "
+            "Esse dinheiro sai da economia produtiva: quem recebe juros tende "
             "a poupar, não a consumir. O multiplicador é negativo do ponto de vista social."
         )
 
@@ -1083,14 +983,14 @@ elif st.session_state.pagina == "resultado":
         partes_eco.append(
             f"Com <b style='color:#8b5cf6'>{s_seg} cartão(ões) em Segurança e Defesa</b> "
             "e nada em renda ou educação, você apostou na contenção em vez da prevenção. "
-            "Kalecki diria: segurança sem investimento social é tratar o sintoma, "
+            "Segurança sem investimento social é tratar o sintoma, "
             "não a causa — a desigualdade."
         )
 
     if not partes_eco:
         partes_eco.append(
             "Suas escolhas ficaram muito dispersas para gerar um multiplicador claro. "
-            "Para Kalecki, concentrar recursos nos setores de maior impacto — "
+            "Concentrar recursos nos setores de maior impacto — "
             "renda, saúde, educação — é mais eficiente do que distribuir pouco em tudo."
         )
 
@@ -1101,7 +1001,7 @@ elif st.session_state.pagina == "resultado":
     if s_trans == 0:  # 0 = sem investimento = ruim
         custo_partes.append(
             "Sem <b style='color:#22c55e'>Transferência de Renda</b>, o consumo popular "
-            "ficou sem base. Para Kalecki, é aqui que começa a recessão: famílias sem renda "
+            "ficou sem base. É aqui que começa a recessão: famílias sem renda "
             "não consomem, empresas vendem menos, demitem mais — uma espiral que começa "
             "embaixo e sobe."
         )
@@ -1120,7 +1020,7 @@ elif st.session_state.pagina == "resultado":
         ])
         custo_partes.append(
             f"Você não alocou nada em {nomes_sem}. "
-            "Para Kalecki, investimento zero não significa apenas serviço ausente — "
+            "Investimento zero não significa apenas serviço ausente — "
             "significa que o multiplicador daquele setor foi completamente desperdiçado."
         )
 
@@ -1132,7 +1032,7 @@ elif st.session_state.pagina == "resultado":
 
     custo_texto = " ".join(custo_partes[:2])
 
-    # ── BLOCO 3: Restrição orçamentária — visão de Kalecki ───────
+    # ── BLOCO 3: Restrição orçamentária ───────
     restricao = (
         "Você teve apenas <b style='color:#ffd700'>5 cartões</b> para distribuir entre "
         f"{len(GASTOS)} áreas. Isso não é acidente — representa uma escolha política "
@@ -1158,7 +1058,7 @@ elif st.session_state.pagina == "resultado":
     <div style="font-family:Fredoka One,cursive;font-size:1.3rem;
         color:#ffd700;margin:.2rem 0 .4rem;">📖 A história do seu governo</div>
     <div style="font-size:.78rem;color:#64748b;margin-bottom:.9rem;">
-        Análise kaleckiana baseada no mix das suas escolhas
+        Análise baseada no mix das suas escolhas
     </div>''', unsafe_allow_html=True)
 
     st.markdown(card_narrativa(
@@ -1170,7 +1070,7 @@ elif st.session_state.pagina == "resultado":
 
     tab1, tab2, tab3, tab4 = st.tabs([
         "📊 Minha Escolha",
-        "🌍 Impacto Kaleckiano",
+        "🌍 Impacto na Economia",
         "👥 Coletivo da Semana Rural",
         "📋 Dados",
     ])
@@ -1200,7 +1100,7 @@ elif st.session_state.pagina == "resultado":
         )
         st.plotly_chart(fig_minha, use_container_width=True)
 
-        st.markdown('<div style="font-family:Fredoka One,cursive;font-size:1.1rem;color:#93c5fd;margin:1rem 0 .6rem;">🎯 Status kaleckiano de cada setor</div>', unsafe_allow_html=True)
+        st.markdown('<div style="font-family:Fredoka One,cursive;font-size:1.1rem;color:#93c5fd;margin:1rem 0 .6rem;">🎯 Status de cada setor</div>', unsafe_allow_html=True)
         # Responsive: 4 cols on PC, 2 on mobile via CSS
         cols_s = st.columns(min(len(GASTOS), 4))
         for i,(area,info) in enumerate(GASTOS.items()):
@@ -1223,7 +1123,7 @@ elif st.session_state.pagina == "resultado":
 
     # ── TAB 2 ────────────────────────────────────────────────────────────────
     with tab2:
-        st.markdown('<div style="font-family:Fredoka One,cursive;font-size:1.3rem;color:#ffd700;margin-bottom:.8rem;">🌍 O que Kalecki diria sobre seu governo?</div>', unsafe_allow_html=True)
+        st.markdown('<div style="font-family:Fredoka One,cursive;font-size:1.3rem;color:#ffd700;margin-bottom:.8rem;">🌍 Qual resultado do seu governo?</div>', unsafe_allow_html=True)
         st.markdown('''
         <div style="background:rgba(59,130,246,.1);border:1.5px solid rgba(59,130,246,.35);
              border-radius:14px;padding:1rem 1.2rem;margin-bottom:1rem;">
@@ -1270,7 +1170,7 @@ elif st.session_state.pagina == "resultado":
                     f'</div></div></div>', unsafe_allow_html=True)
 
         st.markdown("---")
-        st.markdown('<div style="font-family:Fredoka One,cursive;font-size:1.1rem;color:#93c5fd;margin:.8rem 0 .4rem;">📖 Análise kaleckiana — área por área</div>', unsafe_allow_html=True)
+        st.markdown('<div style="font-family:Fredoka One,cursive;font-size:1.1rem;color:#93c5fd;margin:.8rem 0 .4rem;">📖 Análise — área por área</div>', unsafe_allow_html=True)
         st.markdown('<div style="font-size:.8rem;color:#64748b;margin-bottom:.8rem;">1 cartão = ideal · 0 cartões = sem investimento · 2+ cartões = alto investimento com retorno decrescente</div>', unsafe_allow_html=True)
 
         areas_ord = sorted(dist.items(), key=lambda x:-x[1])
@@ -1294,16 +1194,16 @@ elif st.session_state.pagina == "resultado":
                 f'<p style="font-size:.87rem;color:#cbd5e1;line-height:1.65;margin:0">{texto}</p>'
                 f'</div>', unsafe_allow_html=True)
 
-        # Alertas globais kaleckianos
+        # Alertas globais
         st.markdown("---")
         if s_div >= 2:
-            st.markdown('<div class="chip-verm">⚠️ <b>Alerta Kaleckiano:</b> Você repetiu o erro do Brasil real — mais de 40% para a dívida. Kalecki chamaria isso de captura do Estado pelo capital financeiro.</div>', unsafe_allow_html=True)
+            st.markdown('<div class="chip-verm">⚠️ <b>Alerta:</b> Você repetiu o erro do Brasil real — mais de 40% para a dívida. Captura do Estado pelo capital financeiro.</div>', unsafe_allow_html=True)
         if s_trans >= 1:
-            st.markdown('<div class="chip-verde">🌟 <b>Elogio Kaleckiano:</b> Excelente aposta em transferência de renda! É o gasto com maior multiplicador de curto prazo segundo Kalecki.</div>', unsafe_allow_html=True)
+            st.markdown('<div class="chip-verde">🌟 <b>Elogio:</b> Excelente aposta em transferência de renda! É o gasto com maior multiplicador de curto prazo.</div>', unsafe_allow_html=True)
         if s_educ >= 1 and s_saude >= 1:
-            st.markdown('<div class="chip-verde">🌟 <b>Elogio Kaleckiano:</b> Investir bem em saúde E educação é a combinação que mais reduz desigualdade no longo prazo.</div>', unsafe_allow_html=True)
+            st.markdown('<div class="chip-verde">🌟 <b>Elogio:</b> Investir bem em saúde E educação é a combinação que mais reduz desigualdade no longo prazo.</div>', unsafe_allow_html=True)
         if s_educ == 0 or s_saude == 0:
-            st.markdown('<div class="chip-verm">💀 <b>Colapso Kaleckiano:</b> Zerar saúde ou educação é catastrófico. Kalecki diria que sem esses pilares, não há demanda agregada sustentável.</div>', unsafe_allow_html=True)
+            st.markdown('<div class="chip-verm">💀 <b>Colapso:</b> Zerar saúde ou educação é catastrófico. Esses pilares, não há demanda agregada sustentável.</div>', unsafe_allow_html=True)
 
     # ── TAB 3 ────────────────────────────────────────────────────────────────
     with tab3:
@@ -1342,7 +1242,7 @@ elif st.session_state.pagina == "resultado":
                 ))
                 fig_r2.update_layout(
                     polar=dict(radialaxis=dict(visible=True,range=[0,100],tickfont=dict(color="#94a3b8"),gridcolor="rgba(148,163,184,.2)",linecolor="rgba(148,163,184,.2)"),angularaxis=dict(tickfont=dict(color="#cbd5e1"),gridcolor="rgba(148,163,184,.15)")),
-                    title="Perfil coletivo (Kalecki)",
+                    title="Perfil coletivo",
                     title_font=dict(family="Fredoka One",size=16,color="#ffd700"),
                     paper_bgcolor="rgba(13,27,42,0)",font=dict(family="Nunito",color="#e2e8f0"),
                     height=300,margin=dict(t=45,b=5,l=20,r=20),
