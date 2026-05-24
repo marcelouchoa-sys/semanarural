@@ -11,130 +11,154 @@ ARQUIVO_DADOS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dados_
 
 st.set_page_config(page_title="🏛️ Eu Sou o Governo!", page_icon="🏛️",
                    layout="wide", initial_sidebar_state="collapsed")
+# Viewport meta injected via HTML component — Streamlit doesn't support it natively
 
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap');
 
-/* ── TEMA DARK NAVY GLOBAL ── */
+/* ════ BASE DARK NAVY ════ */
 html, body {
     background-color:#0d1b2a !important;
     overflow-x:hidden !important;
+    -webkit-overflow-scrolling:touch;
+    scroll-behavior:smooth;
 }
-[class*="css"], [data-testid="stAppViewContainer"],
-[data-testid="stMain"], .main {
+[class*="css"],[data-testid="stAppViewContainer"],[data-testid="stMain"],.main {
     font-family:'Nunito',sans-serif !important;
     background-color:#0d1b2a !important;
     color:#e2e8f0 !important;
     max-width:100% !important;
     overflow-x:hidden !important;
 }
+
+/* ════ BLOCK CONTAINER ════ */
 .block-container {
     background-color:#0d1b2a !important;
-    max-width:900px !important;
-    padding:1rem 1rem 5rem !important;
+    max-width:1000px !important;
+    padding:1.2rem 1.5rem 5rem !important;
     margin:0 auto !important;
 }
-@media(max-width:640px){
-    .block-container{padding:.5rem .5rem 4rem !important;}
+/* Tablet */
+@media(max-width:768px){
+    .block-container{
+        max-width:100% !important;
+        padding:0.8rem 0.8rem 4rem !important;
+    }
 }
-[data-testid="stSidebar"] { background:#0a1628 !important; }
-[data-testid="stHeader"]  { background:#0d1b2a !important; border-bottom:1px solid rgba(255,255,255,.06); }
+/* Mobile */
+@media(max-width:480px){
+    .block-container{
+        padding:0.5rem 0.4rem 3rem !important;
+    }
+}
 
-/* scrollbar */
-::-webkit-scrollbar{width:6px;height:6px;}
+[data-testid="stSidebar"]{background:#0a1628 !important;}
+[data-testid="stHeader"] {background:#0d1b2a !important;border-bottom:1px solid rgba(255,255,255,.06);}
+
+/* ════ SCROLLBAR ════ */
+::-webkit-scrollbar{width:5px;height:5px;}
 ::-webkit-scrollbar-track{background:#0d1b2a;}
 ::-webkit-scrollbar-thumb{background:#334155;border-radius:3px;}
-/* smooth scroll on mobile */
-html{scroll-behavior:smooth;-webkit-overflow-scrolling:touch;}
 
+/* ════ TIPOGRAFIA ════ */
 h1,h2,h3{font-family:'Fredoka One',cursive!important;color:#f1f5f9!important;}
-
-/* Título arco-íris */
 .titulo-jogo{
-  font-family:'Fredoka One',cursive;font-size:2.6rem;text-align:center;
-  background:linear-gradient(90deg,#e8315b,#f97316,#eab308,#22c55e,#3b82f6,#8b5cf6);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0;
+    font-family:'Fredoka One',cursive;
+    font-size:clamp(1.8rem,5vw,2.8rem);
+    text-align:center;
+    background:linear-gradient(90deg,#e8315b,#f97316,#eab308,#22c55e,#3b82f6,#8b5cf6);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    margin-bottom:0;
 }
-.subtitulo{text-align:center;font-size:1.05rem;color:#94a3b8;font-weight:700;margin-top:0;}
+.subtitulo{text-align:center;font-size:clamp(.85rem,2.5vw,1.05rem);color:#94a3b8;font-weight:700;margin-top:0;}
 
-/* Chips de alerta */
+/* ════ CHIPS ════ */
 .chip-verde{background:rgba(34,197,94,.15);border:1.5px solid #22c55e;border-radius:12px;
-            padding:.7rem 1rem;color:#4ade80;font-weight:700;margin:.3rem 0;}
+            padding:.6rem .9rem;color:#4ade80;font-weight:700;margin:.3rem 0;font-size:clamp(.8rem,2.5vw,.95rem);}
 .chip-ambar{background:rgba(251,191,36,.12);border:1.5px solid #fbbf24;border-radius:12px;
-            padding:.7rem 1rem;color:#fbbf24;font-weight:700;margin:.3rem 0;}
+            padding:.6rem .9rem;color:#fbbf24;font-weight:700;margin:.3rem 0;font-size:clamp(.8rem,2.5vw,.95rem);}
 .chip-verm{background:rgba(239,68,68,.12);border:1.5px solid #ef4444;border-radius:12px;
-           padding:.7rem 1rem;color:#f87171;font-weight:700;margin:.3rem 0;}
+           padding:.6rem .9rem;color:#f87171;font-weight:700;margin:.3rem 0;font-size:clamp(.8rem,2.5vw,.95rem);}
 
-/* Inputs e selects */
+/* ════ INPUTS ════ */
 [data-testid="stTextInput"] input,
 [data-testid="stNumberInput"] input,
 [data-testid="stSelectbox"] select,
-div[data-baseweb="select"] > div {
-    background:#1e293b !important;
-    border:1.5px solid #334155 !important;
-    border-radius:10px !important;
-    color:#e2e8f0 !important;
+div[data-baseweb="select"]>div {
+    background:#1e293b !important;border:1.5px solid #334155 !important;
+    border-radius:10px !important;color:#e2e8f0 !important;
+    font-size:clamp(.85rem,2.5vw,1rem) !important;
+    min-height:44px !important; /* touch-friendly */
 }
 [data-testid="stTextInput"] label,
 [data-testid="stNumberInput"] label,
 [data-testid="stSelectbox"] label,
 [data-testid="stMarkdownContainer"] p,
-[data-testid="stMarkdownContainer"] li { color:#cbd5e1 !important; }
+[data-testid="stMarkdownContainer"] li{color:#cbd5e1 !important;font-size:clamp(.85rem,2.5vw,1rem);}
 
-/* Tabs */
-[data-testid="stTabs"] [data-baseweb="tab-list"] {
-    background:#1e293b !important; border-radius:12px; padding:4px;
-    border:1px solid #334155;
+/* ════ TABS ════ */
+[data-testid="stTabs"] [data-baseweb="tab-list"]{
+    background:#1e293b !important;border-radius:12px;padding:4px;
+    border:1px solid #334155;flex-wrap:wrap;gap:4px;
 }
-[data-testid="stTabs"] [data-baseweb="tab"] {
-    background:transparent !important; color:#94a3b8 !important;
-    font-family:'Fredoka One',cursive; font-size:.95rem; border-radius:8px;
+[data-testid="stTabs"] [data-baseweb="tab"]{
+    background:transparent !important;color:#94a3b8 !important;
+    font-family:'Fredoka One',cursive;
+    font-size:clamp(.78rem,2.2vw,.95rem);border-radius:8px;
+    padding:.4rem .7rem !important;white-space:nowrap;
 }
-[data-testid="stTabs"] [aria-selected="true"] {
-    background:linear-gradient(135deg,#3b82f6,#2563eb) !important;
-    color:white !important;
+[data-testid="stTabs"] [aria-selected="true"]{
+    background:linear-gradient(135deg,#3b82f6,#2563eb) !important;color:white !important;
 }
-[data-testid="stTabs"] [data-baseweb="tab-panel"] {
-    background:#0d1b2a !important; padding-top:1rem;
-}
+[data-testid="stTabs"] [data-baseweb="tab-panel"]{background:#0d1b2a !important;padding-top:1rem;}
 
-/* Dataframe */
-[data-testid="stDataFrame"] { background:#1e293b !important; border-radius:12px; }
+/* ════ DATAFRAME ════ */
+[data-testid="stDataFrame"]{background:#1e293b !important;border-radius:12px;}
 
-/* Divisor */
-hr { border-color:#1e293b !important; }
+hr{border-color:#1e293b !important;}
 
-/* Botões Streamlit */
-.stButton>button {
+/* ════ BOTÕES STREAMLIT — touch-friendly ════ */
+.stButton>button{
     font-family:'Fredoka One',cursive !important;
-    font-size:1.05rem !important;
+    font-size:clamp(.95rem,2.5vw,1.05rem) !important;
     border-radius:12px !important;
-    padding:.6rem 1.5rem !important;
+    padding:.7rem 1.5rem !important;
+    min-height:48px !important;
     border:none !important;
     transition:all .2s !important;
     background:linear-gradient(135deg,#3b82f6,#2563eb) !important;
     color:white !important;
     box-shadow:0 4px 16px rgba(59,130,246,.3) !important;
+    width:100%;
+    -webkit-tap-highlight-color:transparent;
 }
-.stButton>button:hover { transform:translateY(-2px) scale(1.02) !important;
-    box-shadow:0 8px 24px rgba(59,130,246,.45) !important; }
+.stButton>button:hover{transform:translateY(-2px) scale(1.02) !important;
+    box-shadow:0 8px 24px rgba(59,130,246,.45) !important;}
+.stButton>button:active{transform:scale(.97) !important;}
 
-/* Métricas */
-div[data-testid="metric-container"] {
-    background:#1e293b !important; border-radius:14px;padding:1rem;
-    border:1px solid #334155; box-shadow:0 4px 16px rgba(0,0,0,.3);
+/* ════ MÉTRICAS ════ */
+div[data-testid="metric-container"]{
+    background:#1e293b !important;border-radius:14px;padding:1rem;
+    border:1px solid #334155;box-shadow:0 4px 16px rgba(0,0,0,.3);
 }
 div[data-testid="metric-container"] label,
-div[data-testid="metric-container"] [data-testid="stMetricValue"] {
-    color:#e2e8f0 !important;
+div[data-testid="metric-container"] [data-testid="stMetricValue"]{color:#e2e8f0 !important;}
+
+/* ════ ALERTAS ════ */
+[data-testid="stAlert"]{
+    background:#1e293b !important;border-radius:12px;
+    border:1px solid #334155 !important;color:#e2e8f0 !important;
 }
 
-/* Warnings / info */
-[data-testid="stAlert"] {
-    background:#1e293b !important; border-radius:12px;
-    border:1px solid #334155 !important; color:#e2e8f0 !important;
-}
+/* ════ COLUNAS — sem overflow em mobile ════ */
+[data-testid="column"]{min-width:0 !important;}
+
+/* ════ PLOTLY — responsivo ════ */
+.js-plotly-plot .plotly{width:100% !important;}
+
+/* ════ HIDE DEPLOY BUTTON ════ */
+[data-testid="stToolbar"]{display:none !important;}
 </style>
 """, unsafe_allow_html=True)
 
@@ -334,55 +358,48 @@ for k,v in [("pagina","inicio"),("nome",""),("idade",""),("escolaridade",""),
             ("distribuicao",{k:0 for k in GASTOS}),("enviado",False),("reset_key",0)]:
     if k not in st.session_state: st.session_state[k]=v
 
-# ── Detecção de dispositivo via JS ─────────────────────────────────────────
-# Detecta mobile pelo parâmetro ?ua=mobile na URL (sem redirecionamento automático)
-_ua = st.query_params.get("ua", "desktop")
-IS_MOBILE = (_ua == "mobile")
+IS_MOBILE = False  # layout handled by CSS media queries
 
 # ═══════════════════════════════════════════════════════════════
 # PÁGINA 1 — INÍCIO
 # ═══════════════════════════════════════════════════════════════
 if st.session_state.pagina == "inicio":
-    # ── Hero banner ──────────────────────────────────────────────
+    # ── Hero ─────────────────────────────────────────────────────
     st.markdown("""
     <div style="background:linear-gradient(135deg,#1e3a5f 0%,#0f2744 60%,#0d1b2a 100%);
-         border-radius:24px;padding:2.5rem 2rem 2rem;margin-bottom:1.5rem;
-         border:1px solid rgba(74,144,217,.3);
+         border-radius:20px;padding:clamp(1.2rem,4vw,2.5rem) clamp(1rem,4vw,2rem);
+         margin-bottom:1.2rem;border:1px solid rgba(74,144,217,.3);
          box-shadow:0 8px 40px rgba(0,0,0,.5);text-align:center;">
-      <div style="font-family:'Fredoka One',cursive;font-size:3rem;
+      <div style="font-family:'Fredoka One',cursive;
+           font-size:clamp(1.8rem,6vw,3rem);
            background:linear-gradient(90deg,#f97316,#eab308,#22c55e,#3b82f6,#8b5cf6);
            -webkit-background-clip:text;-webkit-text-fill-color:transparent;
            background-clip:text;margin-bottom:.3rem;">🏛️ Eu Sou o Governo!</div>
-      <div style="color:#93c5fd;font-size:1.1rem;font-weight:700;">
+      <div style="color:#93c5fd;font-size:clamp(.85rem,2.5vw,1.1rem);font-weight:700;">
            Jogo do Orçamento Público &nbsp;·&nbsp; Semana Rural</div>
     </div>
     """, unsafe_allow_html=True)
 
-    if IS_MOBILE:
-        # Mobile: coluna única centralizada
-        _, col_form, _ = st.columns([0.1, 0.8, 0.1])
-        col_info = None
-    else:
-        _cols = st.columns([1, 1], gap="large")
-        col_form = _cols[0]
-        col_info  = _cols[1]
+    col_form, col_info = st.columns([1, 1], gap="medium")
 
     with col_form:
         st.markdown("""
-        <div style="background:#1e293b;border-radius:20px;padding:1.8rem 1.5rem 1rem;
-             border:1px solid #334155;box-shadow:0 8px 32px rgba(0,0,0,.4);margin-bottom:1rem;">
-        <div style="font-family:'Fredoka One',cursive;font-size:1.4rem;color:#ffd700;
-             margin-bottom:1.2rem;text-align:center;">👋 Antes de começar</div>
+        <div style="background:#1e293b;border-radius:18px;
+             padding:clamp(1rem,3vw,1.8rem) clamp(.8rem,3vw,1.5rem) .8rem;
+             border:1px solid #334155;box-shadow:0 8px 32px rgba(0,0,0,.4);margin-bottom:.8rem;">
+        <div style="font-family:'Fredoka One',cursive;font-size:clamp(1.1rem,3.5vw,1.4rem);
+             color:#ffd700;margin-bottom:.8rem;text-align:center;">👋 Antes de começar</div>
         </div>""", unsafe_allow_html=True)
 
         nome = st.text_input("Seu nome:", placeholder="Ex: João Silva", key="in_nome")
         if nome.strip():
             st.markdown(
                 f'<div style="background:linear-gradient(135deg,#1e40af,#7c3aed);'
-                f'border-radius:12px;padding:.7rem 1rem;text-align:center;margin:.2rem 0 .4rem;">'
-                f'<span style="font-family:Fredoka One,cursive;font-size:1.2rem;color:#ffd700;">'
+                f'border-radius:12px;padding:.6rem .9rem;text-align:center;margin:.2rem 0 .3rem;">'
+                f'<span style="font-family:Fredoka One,cursive;'
+                f'font-size:clamp(1rem,3vw,1.2rem);color:#ffd700;">'
                 f'Olá, {nome.strip()}! 👋</span><br>'
-                f'<span style="font-size:.82rem;color:rgba(255,255,255,.8);">'
+                f'<span style="font-size:clamp(.75rem,2.2vw,.85rem);color:rgba(255,255,255,.8);">'
                 f'Pronto(a) para ser governante?</span></div>',
                 unsafe_allow_html=True)
         idade = st.number_input("Sua idade:", min_value=8, max_value=80, value=15, step=1, key="in_idade")
@@ -393,7 +410,6 @@ if st.session_state.pagina == "inicio":
             "Graduação",
             "Pós-graduação / Mestrado / Doutorado",
         ], key="in_esc")
-
         st.markdown("<br>", unsafe_allow_html=True)
         if st.button("🚀 Começar o Jogo!", use_container_width=True):
             if nome.strip()=="" or escolaridade=="— selecione —":
@@ -407,52 +423,29 @@ if st.session_state.pagina == "inicio":
                 st.session_state.pagina = "jogo"
                 st.rerun()
 
-    if not IS_MOBILE:
-     with col_info:
-        st.markdown(f"""
+    with col_info:
+        itens = [
+            ("🃏", f'Você recebe <b style="color:#ffd700">{TOTAL_CARTOES} cartões</b> representando o orçamento do governo. É pouco — de propósito.'),
+            ("🎯", 'Distribua nas <b style="color:#4ade80">7 áreas de gasto</b>. Cada cartão a mais num lugar é um a menos em outro.'),
+            ("🔍", 'Veja <b style="color:#a78bfa">o que acontece com a economia</b> com base nas suas escolhas — visão de Kalecki.'),
+            ("🏦", 'Descubra o <b style="color:#fbbf24">paradoxo do orçamento público</b>: o governo emite a própria moeda — então por que a restrição existe?'),
+        ]
+        rows = "".join([
+            f'<div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:.85rem;">'
+            f'<div style="font-size:clamp(1.3rem,3.5vw,1.8rem);line-height:1;flex-shrink:0;">{em}</div>'
+            f'<div style="font-size:clamp(.78rem,2.2vw,.9rem);color:#cbd5e1;line-height:1.55;">{tx}</div></div>'
+            for em,tx in itens
+        ])
+        st.markdown(f'''
         <div style="background:rgba(59,130,246,.08);border:1.5px solid rgba(59,130,246,.3);
-             border-radius:20px;padding:1.8rem 1.6rem;height:100%;
-             box-shadow:0 8px 32px rgba(0,0,0,.3);">
-          <div style="font-family:'Fredoka One',cursive;color:#93c5fd;font-size:1.3rem;margin-bottom:1rem;">
-               📖 Como funciona?</div>
+             border-radius:18px;padding:clamp(1rem,3vw,1.8rem) clamp(.8rem,3vw,1.6rem);
+             box-shadow:0 8px 32px rgba(0,0,0,.3);height:100%;">
+          <div style="font-family:Fredoka One,cursive;color:#93c5fd;
+               font-size:clamp(1rem,3vw,1.3rem);margin-bottom:.8rem;">📖 Como funciona?</div>
+          {rows}
+        </div>''', unsafe_allow_html=True)
 
-          <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:1rem;">
-            <div style="font-size:1.8rem;line-height:1;">🃏</div>
-            <div style="font-size:.9rem;color:#cbd5e1;line-height:1.6;">
-              Você recebe <b style="color:#ffd700">{TOTAL_CARTOES} cartões</b> representando
-              todo o orçamento do governo. É pouco — de propósito.
-            </div>
-          </div>
 
-          <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:1rem;">
-            <div style="font-size:1.8rem;line-height:1;">🎯</div>
-            <div style="font-size:.9rem;color:#cbd5e1;line-height:1.6;">
-              Distribua os cartões nas <b style="color:#4ade80">7 áreas de gasto</b>.
-              Cada real a mais em um lugar é um real a menos em outro — você não pode deixar tudo no máximo.
-            </div>
-          </div>
-
-          <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:1rem;">
-            <div style="font-size:1.8rem;line-height:1;">🔍</div>
-            <div style="font-size:.9rem;color:#cbd5e1;line-height:1.6;">
-              No final, veja <b style="color:#a78bfa">o que acontece com a economia</b>
-              com base nas suas escolhas — na visão do economista Kalecki.
-            </div>
-          </div>
-
-          <div style="display:flex;align-items:flex-start;gap:12px;">
-            <div style="font-size:1.8rem;line-height:1;">🏦</div>
-            <div style="font-size:.9rem;color:#cbd5e1;line-height:1.6;">
-              Descubra o <b style="color:#fbbf24">paradoxo do orçamento público</b>:
-              o governo emite a própria moeda — então por que a restrição existe?
-            </div>
-          </div>
-        </div>
-        """, unsafe_allow_html=True)
-
-# ═══════════════════════════════════════════════════════════════
-# PÁGINA 2 — JOGO
-# ═══════════════════════════════════════════════════════════════
 elif st.session_state.pagina == "jogo":
     import streamlit.components.v1 as components
 
@@ -501,12 +494,13 @@ elif st.session_state.pagina == "jogo":
     dist_ini = json.dumps(st.session_state.distribuicao, ensure_ascii=False)
     n = len(GASTOS)
     import math as _math
-    if IS_MOBILE:
-        _grid_rows = _math.ceil(n / 2)   # 2 colunas no mobile
-        altura = 80 + 50 + 50 + _grid_rows * 160 + 160 + 80  # header+prog+aviso+grid+banco+btn
-    else:
-        _grid_rows = _math.ceil(n / 4)   # 4 colunas no PC (sidebar layout)
-        altura = 80 + 50 + 50 + max(_grid_rows * 190, 200) + 80
+    # Use CSS media queries for layout — altura covers worst case (mobile 2col)
+    _rows_mobile = _math.ceil(n / 2)
+    _rows_pc     = _math.ceil(n / 4)
+    altura = max(
+        80 + 50 + 50 + _rows_mobile * 165 + 200 + 80,   # mobile
+        80 + 50 + 50 + max(_rows_pc * 200, 220) + 80,   # pc
+    ) + 40
 
     html = f"""<!DOCTYPE html><html lang="pt-BR"><head>
 <meta charset="UTF-8">
@@ -516,10 +510,10 @@ elif st.session_state.pagina == "jogo":
 *{{box-sizing:border-box;margin:0;padding:0;}}
 body{{font-family:'Nunito',sans-serif;
   background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);
-  padding:16px 20px 28px;color:white;user-select:none;}}
+  padding:14px 16px 28px;color:white;user-select:none;}}
 
 /* ── LAYOUT MASTER ── */
-#master{{display:grid;grid-template-columns:{'1fr' if IS_MOBILE else '180px 1fr'};gap:{'10' if IS_MOBILE else '16'}px;align-items:start;}}
+#master{{display:grid;grid-template-columns:180px 1fr;gap:16px;align-items:start;}}
 
 /* ── SIDEBAR: banco + contador + btn ── */
 #sidebar{{display:flex;flex-direction:column;gap:12px;position:sticky;top:16px;}}
@@ -562,6 +556,41 @@ body{{font-family:'Nunito',sans-serif;
 #banco-cards.drag-over{{background:rgba(255,215,0,.1);border-color:#ffd700;
   box-shadow:0 0 0 3px rgba(255,215,0,.2);}}
 
+/* ── MEDIA QUERIES ── */
+@media(max-width:820px){{
+  #master{{grid-template-columns:1fr;gap:10px;}}
+  #sidebar{{flex-direction:row;flex-wrap:wrap;gap:8px;display:flex;}}
+  #banco{{flex:1;min-width:180px;}}
+  #btn{{flex:1;min-width:130px;align-self:flex-end;padding:11px;font-size:1rem;}}
+  #grid{{grid-template-columns:repeat(4,1fr);gap:9px;}}
+  .caixa{{min-height:145px;}}
+}}
+@media(max-width:600px){{
+  body{{padding:8px 8px 20px;}}
+  #header{{padding:10px 12px;border-radius:13px;}}
+  #header-left h1{{font-size:.95rem;}}
+  #contador-resto{{font-size:1.8rem;}}
+  #master{{grid-template-columns:1fr;gap:8px;}}
+  #sidebar{{flex-direction:column;display:flex;}}
+  #grid{{grid-template-columns:repeat(3,1fr);gap:7px;}}
+  .caixa{{min-height:118px;padding:10px 5px 8px;border-radius:12px;}}
+  .c-emoji{{font-size:1.6rem;margin-bottom:3px;}}
+  .c-nome{{font-size:.66rem;}}
+  .c-cnt{{width:38px;height:38px;font-size:1.4rem;margin-bottom:4px;}}
+  .c-touch-btns{{display:flex !important;}}
+  .mini,.c-pilha{{display:none !important;}}
+  .cartao{{width:40px;height:52px;font-size:1.2rem;}}
+  #banco-cards{{min-height:42px;padding:6px;gap:5px;}}
+  #btn{{padding:11px;font-size:.95rem;}}
+  #prog-bg{{height:10px;}}
+}}
+@media(max-width:380px){{
+  #grid{{grid-template-columns:repeat(2,1fr);gap:5px;}}
+  .caixa{{min-height:108px;}}
+  .c-nome{{font-size:.6rem;}}
+  .c-cnt{{width:34px;height:34px;font-size:1.25rem;}}
+}}
+
 /* CARTÃO */
 .cartao{{width:48px;height:64px;
   background:linear-gradient(145deg,#fbbf24,#f59e0b);
@@ -590,7 +619,7 @@ body{{font-family:'Nunito',sans-serif;
   cursor:not-allowed;border:1.5px solid rgba(255,255,255,.1);box-shadow:none;}}
 
 /* GRID (conteúdo principal) */
-#grid{{display:grid;grid-template-columns:repeat({'2' if IS_MOBILE else '4'},1fr);gap:{'8' if IS_MOBILE else '12'}px;}}
+#grid{{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}}
 
 /* CAIXA */
 .caixa{{border-radius:16px;padding:18px 10px 16px;
@@ -614,7 +643,16 @@ body{{font-family:'Nunito',sans-serif;
   transition:transform .25s cubic-bezier(.34,1.56,.64,1);
   border:2px solid rgba(255,255,255,.2);margin-bottom:8px;}}
 .c-cnt.bump{{transform:scale(1.5);}}
-.c-touch-btns{{display:flex;}}
+.c-touch-btns{{display:flex;gap:8px;justify-content:center;margin-top:4px;}}
+.c-btn-minus,.c-btn-plus{{
+  width:36px;height:36px;border:none;border-radius:10px;cursor:pointer;
+  font-size:1.3rem;font-weight:900;display:flex;align-items:center;justify-content:center;
+  transition:transform .12s,opacity .12s;-webkit-tap-highlight-color:transparent;
+  color:white;font-family:'Fredoka One',cursive;box-shadow:0 3px 10px rgba(0,0,0,.35);}}
+.c-btn-minus{{background:linear-gradient(135deg,#ef4444,#b91c1c);}}
+.c-btn-plus{{background:linear-gradient(135deg,#22c55e,#15803d);}}
+.c-btn-minus:active,.c-btn-plus:active{{transform:scale(.85);opacity:.8;}}
+.c-btn-minus:disabled,.c-btn-plus:disabled{{background:rgba(255,255,255,.12);color:rgba(255,255,255,.3);box-shadow:none;cursor:not-allowed;}}
 
 /* MINI CARTÕES */
 .c-pilha{{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;padding:2px 4px 0;}}
@@ -936,7 +974,7 @@ elif st.session_state.pagina == "resultado":
     st.markdown(f'''
     <div style="background:linear-gradient(135deg,#1e3a5f,#0f2744);border-radius:16px;
          padding:1.2rem 1.8rem;margin-bottom:1rem;border:1px solid rgba(74,144,217,.3);
-         box-shadow:0 4px 20px rgba(0,0,0,.4);display:flex;align-items:center;gap:16px;">
+         box-shadow:0 4px 20px rgba(0,0,0,.4);display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
       <div style="font-size:2.8rem;">🏙️</div>
       <div>
         <div style="font-family:'Fredoka One',cursive;font-size:1.8rem;
@@ -953,10 +991,11 @@ elif st.session_state.pagina == "resultado":
     # ══════════════════════════════════════════════════════════════
 
     def bloco(emoji, titulo, cor, texto):
-        return (f'<div style="margin-bottom:1.1rem;">'
-                f'<div style="font-family:Fredoka One,cursive;font-size:1rem;'
-                f'color:{cor};margin-bottom:.4rem;">{emoji} {titulo}</div>'
-                f'<div style="font-size:.9rem;color:#e2e8f0;line-height:1.8;">{texto}</div>'
+        return (f'<div style="margin-bottom:1rem;">'
+                f'<div style="font-family:Fredoka One,cursive;'
+                f'font-size:clamp(.88rem,2.5vw,1rem);'
+                f'color:{cor};margin-bottom:.35rem;">{emoji} {titulo}</div>'
+                f'<div style="font-size:clamp(.8rem,2.2vw,.9rem);color:#e2e8f0;line-height:1.75;">{texto}</div>'
                 f'</div>')
 
     def card_narrativa(blocos_html):
@@ -1168,6 +1207,7 @@ elif st.session_state.pagina == "resultado":
             x=labels, y=minha, marker_color=cores,
             text=minha, textposition="outside",
         ))
+        fig_minha.update_layout(margin=dict(t=50,b=60,l=20,r=20))
         fig_minha.update_layout(
             title="Seus cartões por área",
             title_font=dict(family="Fredoka One",size=17,color="#ffd700"),
@@ -1181,8 +1221,10 @@ elif st.session_state.pagina == "resultado":
         st.plotly_chart(fig_minha, use_container_width=True)
 
         st.markdown('<div style="font-family:Fredoka One,cursive;font-size:1.1rem;color:#93c5fd;margin:1rem 0 .6rem;">🎯 Status kaleckiano de cada setor</div>', unsafe_allow_html=True)
-        cols_s = st.columns(len(GASTOS))
+        # Responsive: 4 cols on PC, 2 on mobile via CSS
+        cols_s = st.columns(min(len(GASTOS), 4))
         for i,(area,info) in enumerate(GASTOS.items()):
+            i = i % min(len(GASTOS), 4)
             qtd = dist.get(area,0)
             n   = min(qtd,4)
             lbl, cor, _ = info["niveis"][n]
@@ -1230,7 +1272,7 @@ elif st.session_state.pagina == "resultado":
                 title="Perfil econômico",
                 title_font=dict(family="Fredoka One",size=16,color="#ffd700"),
                 paper_bgcolor="rgba(13,27,42,0)", font=dict(family="Nunito",color="#e2e8f0"),
-                height=320, margin=dict(t=50,b=10,l=30,r=30),
+                height=300, margin=dict(t=45,b=5,l=20,r=20),
             )
             st.plotly_chart(fig_radar, use_container_width=True)
         with col_g:
@@ -1323,7 +1365,7 @@ elif st.session_state.pagina == "resultado":
                     title="Perfil coletivo (Kalecki)",
                     title_font=dict(family="Fredoka One",size=16,color="#ffd700"),
                     paper_bgcolor="rgba(13,27,42,0)",font=dict(family="Nunito",color="#e2e8f0"),
-                    height=310,margin=dict(t=50,b=10,l=30,r=30),
+                    height=300,margin=dict(t=45,b=5,l=20,r=20),
                 )
                 st.plotly_chart(fig_r2, use_container_width=True)
 
@@ -1331,19 +1373,26 @@ elif st.session_state.pagina == "resultado":
             st.markdown(f'<div class="chip-verde" style="margin-top:.8rem;">🏆 Área mais escolhida: <b>{campeao["Área"]}</b> com <b>{int(campeao["Total"])} cartões no total</b>. Assim funciona a política real — as prioridades emergem da decisão coletiva.</div>', unsafe_allow_html=True)
 
             if any("escolaridade" in r for r in dados):
-                st.markdown("#### 📚 Prioridade principal por escolaridade")
+                st.markdown('<div style="font-family:Fredoka One,cursive;font-size:1rem;color:#93c5fd;margin:.8rem 0 .3rem;">📉 Área menos investida por escolaridade</div>', unsafe_allow_html=True)
+                st.caption("Qual área cada grupo mais negligenciou — a que recebeu menos cartões.")
                 rows2=[]
                 for reg in dados:
                     if "escolaridade" not in reg: continue
-                    ma=max(reg["distribuicao"],key=reg["distribuicao"].get)
-                    rows2.append({"Escolaridade":reg["escolaridade"].split("(")[0].strip(),"Prioridade":ma})
+                    mi=min(reg["distribuicao"],key=reg["distribuicao"].get)
+                    rows2.append({"Escolaridade":reg["escolaridade"].split("(")[0].strip(),"Menos investida":mi})
                 if rows2:
                     df_esc=pd.DataFrame(rows2)
-                    fig_esc=px.histogram(df_esc,x="Escolaridade",color="Prioridade",
+                    fig_esc=px.histogram(df_esc,x="Escolaridade",color="Menos investida",
                         color_discrete_map={k:GASTOS.get(k,{"cor":"#999"})["cor"] for k in GASTOS},
-                        title="Maior prioridade por escolaridade",barmode="stack")
-                    fig_esc.update_layout(paper_bgcolor="rgba(13,27,42,0)",plot_bgcolor="rgba(30,41,59,0.4)",
-                        font=dict(family="Nunito",color="#e2e8f0"),title_font=dict(family="Fredoka One",size=16,color="#ffd700"))
+                        title="Área menos investida por escolaridade",barmode="stack")
+                    fig_esc.update_layout(
+                        paper_bgcolor="rgba(13,27,42,0)",plot_bgcolor="rgba(30,41,59,0.4)",
+                        font=dict(family="Nunito",color="#e2e8f0"),
+                        title_font=dict(family="Fredoka One",size=16,color="#ffd700"),
+                        legend=dict(font=dict(color="#e2e8f0")),
+                        xaxis=dict(tickfont=dict(color="#94a3b8")),
+                        yaxis=dict(tickfont=dict(color="#94a3b8"),title="Participantes"),
+                    )
                     st.plotly_chart(fig_esc, use_container_width=True)
 
     # ── TAB 4 ────────────────────────────────────────────────────────────────
@@ -1373,12 +1422,13 @@ elif st.session_state.pagina == "resultado":
 
     def card_edu(emoji, titulo, cor_borda, conteudo):
         return f'''<div style="background:linear-gradient(135deg,#1e293b,#0f172a);
-            border-radius:16px;padding:1.4rem 1.6rem;margin-bottom:1rem;
-            border-left:5px solid {cor_borda};
+            border-radius:16px;padding:clamp(.9rem,3vw,1.4rem) clamp(.9rem,3vw,1.6rem);
+            margin-bottom:.9rem;border-left:5px solid {cor_borda};
             box-shadow:0 4px 20px rgba(0,0,0,.4);">
-          <div style="font-family:Fredoka One,cursive;font-size:1.05rem;
-               color:{cor_borda};margin-bottom:.7rem;">{emoji} {titulo}</div>
-          <div style="font-size:.9rem;color:#cbd5e1;line-height:1.75;">{conteudo}</div>
+          <div style="font-family:Fredoka One,cursive;
+               font-size:clamp(.9rem,2.5vw,1.05rem);
+               color:{cor_borda};margin-bottom:.6rem;">{emoji} {titulo}</div>
+          <div style="font-size:clamp(.8rem,2.2vw,.9rem);color:#cbd5e1;line-height:1.7;">{conteudo}</div>
         </div>'''
 
     bloco1 = card_edu("🖨️", "O governo emite a própria moeda — então por que tem limite?", "#3b82f6", """
