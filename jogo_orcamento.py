@@ -1170,7 +1170,7 @@ elif st.session_state.pagina == "resultado":
 
     tab1, tab2, tab3, tab4 = st.tabs([
         "📊 Minha Escolha",
-        "🌍 Impacto Kaleckiano",
+        "🌍 Impacto na Economia",
         "👥 Coletivo da Semana Rural",
         "📋 Dados",
     ])
