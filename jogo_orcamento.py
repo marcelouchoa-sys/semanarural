@@ -1135,42 +1135,23 @@ elif st.session_state.pagina == "resultado":
     # ── BLOCO 3: Restrição orçamentária — visão de Kalecki ───────
     restricao = (
         "Você teve apenas <b style='color:#ffd700'>5 cartões</b> para distribuir entre "
-        f"{len(GASTOS)} áreas. Isso não é acidente — é a representação de uma escolha política "
+        f"{len(GASTOS)} áreas. Isso não é acidente — representa uma escolha política "
         "chamada <b style='color:#a78bfa'>restrição orçamentária</b>.<br><br>"
-        "Para Kalecki, o ponto central é este: o governo emite a própria moeda. "
+        "O ponto central é este: o governo emite a própria moeda. "
         "Ele nunca 'fica sem dinheiro' no sentido que uma família fica. "
         "O limite existe porque o Estado <b style='color:#f472b6'>escolhe criá-lo</b> — "
         "por meio de regras fiscais, leis de responsabilidade e acordos políticos.<br><br>"
-        "O argumento kaleckiano mais profundo não é sobre inflação ou dívida. "
+        "A discussão mais profunda não é sobre inflação ou dívida. "
         "É sobre <b style='color:#4ade80'>poder</b>: manter o orçamento apertado significa "
         "manter o desemprego como ameaça permanente aos trabalhadores. "
         "Quem tem medo de perder o emprego não reivindica salário, não faz greve, "
-        "não organiza sindicato. Para Kalecki, a austeridade fiscal não é técnica — "
+        "não organiza sindicato. A austeridade fiscal, nessa leitura, não é técnica — "
         "é uma <b style='color:#f472b6'>disciplina social imposta pelo capital sobre o trabalho</b>. "
         "Na vida real, o Brasil destina mais de 40% do orçamento ao serviço da dívida — "
         "enquanto saúde, educação e habitação brigam pelo restante."
     )
 
-    # ── BLOCO 4: Frase final ──────────────────────────────────────
-    frases = {
-        "progressista":
-            f'"<i>{nome} entendeu o que poucos governantes aceitam: '
-            'a economia cresce quando quem tem menos passa a ter mais. '
-            'O multiplicador não começa no topo — começa na base.</i>"',
-        "fiscal-conservador":
-            f'"<i>Honrar a dívida tem seu lugar. Mas quando os credores recebem '
-            'antes das crianças irem à escola, isso não é responsabilidade fiscal — '
-            'é uma escolha sobre quem importa mais, {nome}.</i>"',
-        "equilibrado":
-            f'"<i>{nome} tentou distribuir bem com pouco. '
-            'Mas em economia, meio investimento em tudo '
-            'frequentemente significa resultado fraco em nada. '
-            'Priorizar é a essência da política.</i>"',
-        "fragmentado":
-            f'"<i>O orçamento de {nome} não teve coragem de escolher. '
-            'E orçamento sem escolha é política sem projeto — '
-            'os recursos se perdem sem mover nada de verdade.</i>"',
-    }
+    # frases removidas
 
     # ── Renderiza ─────────────────────────────────────────────────
     st.markdown('''
@@ -1183,8 +1164,7 @@ elif st.session_state.pagina == "resultado":
     st.markdown(card_narrativa(
         bloco("📈", "O que suas escolhas movimentam na economia", "#93c5fd", economia_texto) +
         bloco("⚠️", "O que ficou de fora — e o custo disso", "#fbbf24", custo_texto) +
-        bloco("🏦", "A restrição orçamentária — na visão de Kalecki", "#a78bfa", restricao) +
-        bloco("💬", "O que Kalecki diria sobre seu governo", "#f472b6", frases[perfil])
+        bloco("🏦", "A restrição orçamentária", "#a78bfa", restricao)
     ), unsafe_allow_html=True)
     st.markdown("---")
 
