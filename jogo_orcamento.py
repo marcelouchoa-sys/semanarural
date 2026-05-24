@@ -1378,8 +1378,12 @@ elif st.session_state.pagina == "resultado":
                 rows2=[]
                 for reg in dados:
                     if "escolaridade" not in reg: continue
-                    mi=min(reg["distribuicao"],key=reg["distribuicao"].get)
-                    rows2.append({"Escolaridade":reg["escolaridade"].split("(")[0].strip(),"Menos investida":mi})
+                    esc = reg["escolaridade"].split("(")[0].strip()
+                    dist_reg = reg["distribuicao"]
+                    # Pega sempre os 3 setores menos investidos
+                    areas_ord = sorted(dist_reg.items(), key=lambda x: x[1])
+                    for area, _ in areas_ord[:3]:
+                        rows2.append({"Escolaridade": esc, "Menos investida": area})
                 if rows2:
                     df_esc=pd.DataFrame(rows2)
                     fig_esc=px.histogram(df_esc,x="Escolaridade",color="Menos investida",
