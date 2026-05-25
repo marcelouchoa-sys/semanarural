@@ -403,6 +403,7 @@ if st.session_state.pagina == "inicio":
         idade = st.number_input("Sua idade:", min_value=8, max_value=80, value=15, step=1, key="in_idade")
         escolaridade = st.selectbox("Nível de escolaridade:", [
             "— selecione —",
+            "Ensino Fundamental I (1º ao 5º ano)"
             "Ensino Fundamental II (6º ao 9º ano)",
             "Ensino Médio",
             "Graduação",
