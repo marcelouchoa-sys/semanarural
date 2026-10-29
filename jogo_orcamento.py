@@ -372,9 +372,9 @@ if st.session_state.pagina == "inicio":
            font-size:clamp(1.8rem,6vw,3rem);
            background:linear-gradient(90deg,#f97316,#eab308,#22c55e,#3b82f6,#8b5cf6);
            -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-           background-clip:text;margin-bottom:.3rem;">🏛️ Eu Sou o Governo!</div>
+           background-clip:text;margin-bottom:.3rem;"> Eu Sou o Governo!</div>
       <div style="color:#93c5fd;font-size:clamp(.85rem,2.5vw,1.1rem);font-weight:700;">
-           Jogo do Orçamento Público &nbsp;·&nbsp; SNCT UFRRj</div>
+           Economia em poucos segundos &nbsp;·&nbsp; SNCT UFRRJ</div>
     </div>
     """, unsafe_allow_html=True)
 
