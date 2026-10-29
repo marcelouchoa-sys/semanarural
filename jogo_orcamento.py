@@ -374,7 +374,7 @@ if st.session_state.pagina == "inicio":
            -webkit-background-clip:text;-webkit-text-fill-color:transparent;
            background-clip:text;margin-bottom:.3rem;">🏛️ Eu Sou o Governo!</div>
       <div style="color:#93c5fd;font-size:clamp(.85rem,2.5vw,1.1rem);font-weight:700;">
-           Jogo do Orçamento Público &nbsp;·&nbsp; Semana Rural</div>
+           Jogo do Orçamento Público &nbsp;·&nbsp; SNCT UFRRj</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -389,7 +389,7 @@ if st.session_state.pagina == "inicio":
              color:#ffd700;margin-bottom:.8rem;text-align:center;">👋 Antes de começar</div>
         </div>""", unsafe_allow_html=True)
 
-        nome = st.text_input("Seu nome:", placeholder="Ex: João Silva", key="in_nome")
+        nome = st.text_input("Seu nome/Grupo:", placeholder="Ex: João Silva", key="in_nome")
         if nome.strip():
             st.markdown(
                 f'<div style="background:linear-gradient(135deg,#1e40af,#7c3aed);'
